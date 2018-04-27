@@ -1,21 +1,25 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <div class="navbar-header">
       <a href="#" class="navbar-brand">Recipe Book</a>
     </div>
     <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li> <a href="#">Recipes</a></li>
-        <li> <a href="#">Shopping list</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <a href="#" class="dropdown-toggle" role="button"> Manage</a>
-        <li class="dropdown">
-          <ul class="dropdown-menu">
-            <li> <a href="#">Save Data</a></li>
-            <li> <a href="#">Fetch Data</a></li>
-          </ul>
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Recipes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Shopping list</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" ria-expanded="false"> Manage <span class="caret-handle"></span></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item"  href="#">Save Data</a>
+          <a class="dropdown-item"  href="#">Fetch Data</a>
+        </div>
+      </li>
       </ul>
     </div>
   </div>
