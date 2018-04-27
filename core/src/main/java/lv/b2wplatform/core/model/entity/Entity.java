@@ -24,6 +24,6 @@ public class Entity {
     public void setValue(Value value) {
         values.put(value.getAttrId(), value);
     }
-1
+
 
 }
