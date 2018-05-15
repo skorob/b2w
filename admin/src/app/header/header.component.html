@@ -11,16 +11,20 @@
         <li class="nav-item">
           <a class="nav-link" href="#" (click)="onSelect('shopping-list')">Shopping list</a>
         </li>
+      </ul>
 
-
-        <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" ria-expanded="false"> Manage <span class="caret-handle"></span></a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item"  href="#">Save Data</a>
-          <a class="dropdown-item"  href="#">Fetch Data</a>
+      <ul class="btn-group" appDropdown role="group">
+        <button type="button"  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Manage<span class="caret"></span>
+        </button>
+        <div class="dropdown-menu" role="menu">
+            <li  class="dropdown-item"><a href="#">Save Data</a> </li>
+            <li  class="dropdown-item"><a href="#">Fetch Data</a> </li>
         </div>
-      </li>
       </ul>
     </div>
   </div>
+
+
+
 </nav>

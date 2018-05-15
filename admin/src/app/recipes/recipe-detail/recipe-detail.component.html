@@ -10,16 +10,16 @@
 </div>
 <div class="row">
   <div class="col-xl-12">
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle">
+      <ul class="btn-group" appDropdown role="group">
+        <button type="button"  type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           Manage Recipe <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">
-          <li><a href="#">To Shopping List</a> </li>
-          <li><a href="#">Edit Recipe</a> </li>
-          <li><a href="#">Delete Recipe</a> </li>
-        </ul>
-      </div>
+        <div class="dropdown-menu" role="menu">
+          <li  class="dropdown-item"><a href="#">To Shopping List</a> </li>
+          <li class="dropdown-item"><a href="#">Edit Recipe</a> </li>
+          <li class="dropdown-item"><a href="#">Delete Recipe</a> </li>
+        </div>
+      </ul>
   </div>
 </div>
 <div class="row">
@@ -32,3 +32,5 @@
     Ingredients
   </div>
 </div>
+
+
