@@ -3,13 +3,13 @@
     <div class="navbar-header">
       <a href="#" class="navbar-brand">Recipe Book</a>
     </div>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse nav-pills">
       <ul class="nav navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/recipes">Recipes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelect('shopping-list')">Shopping list</a>
+        <li class="nav-item" routerLinkActive="active" >
+          <a class="nav-link" routerLink="/shopping-list">Shopping list</a>
         </li>
       </ul>
 
@@ -18,8 +18,8 @@
           Manage<span class="caret"></span>
         </button>
         <div class="dropdown-menu" role="menu">
-            <li  class="dropdown-item"><a href="#">Save Data</a> </li>
-            <li  class="dropdown-item"><a href="#">Fetch Data</a> </li>
+            <li  class="dropdown-item"><a  style="cursor: pointer">Save Data</a> </li>
+            <li  class="dropdown-item"><a style="cursor: pointer">Fetch Data</a> </li>
         </div>
       </ul>
     </div>
