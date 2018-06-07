@@ -6,8 +6,6 @@ import {ShoppingListService} from "../shopping-list/shopping-list.service";
 @Injectable()
 export class RecipeService {
 
-  recipeSelected = new EventEmitter<Recipe>();
-
   private recipes:Recipe[]=[
     new Recipe('A test recipe 1', 'This is simply a test','http://img.bestrecipes.com.au/RCK3slSo/h300-w400-cscale/br-api/asset/20771/super-easy-pizza-dough-recipe.jpg',
       [ new Ingredient('Meat',1),
