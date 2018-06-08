@@ -14,6 +14,8 @@ import {ShoppingListService} from "./shopping-list/shopping-list.service";
 import {AppRoutingMogule} from "./app-routing.module";
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 
 
@@ -33,6 +35,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpModule,
     AppRoutingMogule
   ],
   providers: [ShoppingListService],
