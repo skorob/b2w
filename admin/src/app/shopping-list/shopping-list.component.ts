@@ -13,6 +13,8 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients:Ingredient[];
   private subscription : Subscription;
 
+
+
   constructor(private slService:ShoppingListService  ) { }
 
   ngOnInit() {
@@ -21,6 +23,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
       this.ingredients = ingredients;
       }
     );
+    
+  }
+
+  onEditItem(index:number) {
+    this.slService.startedEditing.next(index);
   }
 
   ngOnDestroy() {
