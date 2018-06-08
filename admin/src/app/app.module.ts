@@ -16,6 +16,7 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -37,7 +38,8 @@ import {HttpModule} from "@angular/http";
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingMogule
+    AppRoutingMogule,
+    ReactiveFormsModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
