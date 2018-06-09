@@ -7,4 +7,6 @@ public class BusinessPartner {
 
     private LogisticProfile logisticProfile;
 
+    private DistributorProfile distributorProfile;
+
 }

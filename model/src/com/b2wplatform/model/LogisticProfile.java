@@ -1,5 +1,5 @@
 package com.b2wplatform.model;
 
 
-public class LogisticProfile {
+public class LogisticProfile extends Profile {
 }
