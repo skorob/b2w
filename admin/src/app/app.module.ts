@@ -18,6 +18,8 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "./recipes/recipe.service";
+import {DataStorageService} from "./shared/data-storage.service";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -38,11 +40,11 @@ import {RecipeService} from "./recipes/recipe.service";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingMogule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
