@@ -23,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import {AuthService} from "./auth/auth.service";
+import {AuthGuard} from "./auth/auth-guard.service";
 
 
 
@@ -49,7 +50,7 @@ import {AuthService} from "./auth/auth.service";
     AppRoutingMogule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
