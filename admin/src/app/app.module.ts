@@ -20,6 +20,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "./recipes/recipe.service";
 import {DataStorageService} from "./shared/data-storage.service";
 import {HttpClientModule} from "@angular/common/http";
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import {AuthService} from "./auth/auth.service";
 
 
 
@@ -35,7 +38,9 @@ import {HttpClientModule} from "@angular/common/http";
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingMogule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
