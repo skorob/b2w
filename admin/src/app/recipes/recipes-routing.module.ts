@@ -8,13 +8,12 @@ import {RecipeStartComponent} from "./recipe-start/recipe-start.component";
 import {RouterModule} from "@angular/router";
 
 const recipesRoutes: Routes = [
-  {path: 'recipes', component: RecipesComponent,
+  {path: '', component: RecipesComponent,
     children: [
+      {path: '', component: RecipeStartComponent},
       {path: 'new', component: RecipeEditComponent, canActivate:[AuthGuard]},
       {path: ':id/edit', component: RecipeEditComponent},
-      {path: ':id', component: RecipeDetailComponent, canActivate:[AuthGuard]},
-
-      {path: '', component: RecipeStartComponent}
+      {path: ':id', component: RecipeDetailComponent, canActivate:[AuthGuard]}
     ]},
 ];
 
