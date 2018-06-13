@@ -11,20 +11,20 @@
 
     <artifactId>boot</artifactId>
 
- <properties>
+    <properties>
         <main.basedir>${project.parent.basedir}</main.basedir>
     </properties>
 
 
-
     <dependencies>
-
         <dependency>
             <groupId>B2WPlatform</groupId>
             <artifactId>admin</artifactId>
-            <version>0.0.0.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>B2WPlatform</groupId>
+            <artifactId>model</artifactId>
+        </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -68,7 +68,7 @@
 
     </dependencies>
 
-<build>
+    <build>
         <finalName>b2wplatform-app</finalName>
         <plugins>
             <plugin>
@@ -79,6 +79,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-                    </plugins>
+        </plugins>
     </build>
 </project>
