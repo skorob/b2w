@@ -35,6 +35,13 @@ export class DataStorageService {
         const recipes = response;
         this.recipeService.setRecipes(recipes);
     });
+
+    this.http.get('/api/login')
+      .subscribe((response: Object) => {
+          console.log(response);
+
+
+      });
   }
 
 }
