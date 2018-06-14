@@ -5,8 +5,8 @@ public class BusinessPartner {
 
     private String name;
 
-    private LogisticProfile logisticProfile;
+    private LogisticBusinessProfile logisticProfile;
 
-    private DistributorProfile distributorProfile;
+    private DistributorBusinessProfile distributorProfile;
 
 }

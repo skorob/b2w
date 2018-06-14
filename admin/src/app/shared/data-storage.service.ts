@@ -36,7 +36,7 @@ export class DataStorageService {
         this.recipeService.setRecipes(recipes);
     });
 
-    this.http.get('/api/login')
+    this.http.get('/api/users')
       .subscribe((response: Object) => {
           console.log(response);
 
