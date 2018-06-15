@@ -30,6 +30,7 @@
         <spring.boot.version>2.0.2.RELEASE</spring.boot.version>
         <node.version>v8.11.2</node.version>
         <npm.version>6.1.0</npm.version>
+        <json.web.token.version>0.8.0</json.web.token.version>
     </properties>
 
 
@@ -93,6 +94,13 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring.boot.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -117,6 +125,12 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.2.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${json.web.token.version}</version>
             </dependency>
 
         </dependencies>
