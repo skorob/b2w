@@ -14,12 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EntityScan("com.b2wplatform")
 @EnableJpaRepositories(basePackages = "com.b2wplatform")
-
-
-
-
 public class Application {
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

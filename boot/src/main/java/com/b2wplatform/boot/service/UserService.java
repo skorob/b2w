@@ -3,6 +3,8 @@ package com.b2wplatform.boot.service;
 
 import com.b2wplatform.boot.repo.UserRepository;
 import com.b2wplatform.model.ApplicationUser;
+import enums.UserStatus;
+import lv.b2wplatform.core.exception.B2WException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,15 +28,19 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         ApplicationUser applicationUser = userRepository.findByLogin(userName);
         if (applicationUser == null) {
-            throw new UsernameNotFoundException(userName);
+            throw new B2WException(new UsernameNotFoundException(userName));
         }
+
+        if(applicationUser.getUserStatus() == UserStatus.NEW) {
+            throw new B2WException("User is not activated !!!");
+        }
+
         return new User(applicationUser.getLogin(), applicationUser.getSecuredPassword(), emptyList());
     }
 
     public void signupUser(ApplicationUser user) {
         user.setLogin(user.getLogin().toLowerCase());
         user.setSecuredPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        long dt1 = System.currentTimeMillis();
         userRepository.save(user);
     }
 

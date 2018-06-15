@@ -22,6 +22,12 @@
             <groupId>B2WPlatform</groupId>
             <artifactId>model</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>B2WPlatform</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
