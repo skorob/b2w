@@ -18,7 +18,7 @@
 
     <modules>
         <module>core</module>
-        <module>admin</module>
+        <module>ui</module>
 
         <module>carparts</module>
         <module>model</module>
