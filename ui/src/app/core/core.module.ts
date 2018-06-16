@@ -3,6 +3,7 @@ import {HeaderComponent} from "./header/header.component";
 import {CommonModule} from "@angular/common";
 import {AppRoutingModule} from "../app-routing.module";
 import {AuthService} from "../auth/auth.service";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
