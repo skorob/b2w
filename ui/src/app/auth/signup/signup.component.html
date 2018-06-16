@@ -1,28 +1,23 @@
 <div class="row">
+
   <div class="col-xl-12 col-sm-10 col-md-8 col-md-2">
+
     <form [formGroup]="loginForm" (ngSubmit)="onSignup()" >
+
       <div class="form-group">
         <label for="login">Mail</label>
         <input type="email" id="login"formControlName="login"  class="form-control" >
       </div>
+
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" formControlName="password" class="form-control">
       </div>
 
-      <div *ngIf="login.invalid && (login.dirty || login.touched)"
-           class="alert alert-danger">
-
-        <div *ngIf="login.errors.required">
-          Name is required.
-        </div>
-        <div *ngIf="login.errors.minlength">
-          Name must be at least 4 characters long.
-        </div>
-
-      </div>
-
       <button class="button btn btn-success" type="submit"  [disabled]="!loginForm.valid">Sign Up</button>
+
     </form>
+
   </div>
+
 </div>
