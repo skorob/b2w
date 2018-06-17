@@ -5,6 +5,7 @@ import {Validators} from "@angular/forms";
 import {FormControl} from "@angular/forms";
 import {ValidationErrors} from "@angular/forms";
 import {ErrorHandlerService} from "../../../shared/error-handler.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -14,13 +15,14 @@ export class SignupComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private errorHandlerService: ErrorHandlerService) { }
+  constructor(private authService: AuthService, private errorHandlerService: ErrorHandlerService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'login': new FormControl(null,
-          [Validators.required,
-          Validators.email]),
+      'login': new FormControl(
+        null,
+        [Validators.required,
+        Validators.email]),
       'password' : new FormControl(null, Validators.required)
     });
   }
@@ -28,7 +30,7 @@ export class SignupComponent implements OnInit {
   onSignup() {
     this.authService.signup(this.loginForm.value.login, this.loginForm.value.login).subscribe(
       data => {
-        
+        this.router.navigate(['/signup-confirm']);
       },
       err => {
         this.errorHandlerService.handleHttpError(err, this.loginForm);
