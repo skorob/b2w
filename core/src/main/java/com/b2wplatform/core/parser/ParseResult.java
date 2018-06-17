@@ -1,8 +1,8 @@
-package lv.b2wplatform.core.parser;
+package com.b2wplatform.core.parser;
 
 
+import com.b2wplatform.core.model.entity.Entity;
 import lombok.Getter;
-import lv.b2wplatform.core.model.entity.Entity;
 
 import java.util.List;
 

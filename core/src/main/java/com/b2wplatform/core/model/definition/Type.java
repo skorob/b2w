@@ -1,4 +1,4 @@
-package lv.b2wplatform.core.model.definition;
+package com.b2wplatform.core.model.definition;
 
 
 public enum Type {

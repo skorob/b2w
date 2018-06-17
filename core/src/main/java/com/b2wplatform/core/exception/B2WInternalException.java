@@ -1,4 +1,4 @@
-package lv.b2wplatform.core.exception;
+package com.b2wplatform.core.exception;
 
 
 public class B2WInternalException extends B2WException{

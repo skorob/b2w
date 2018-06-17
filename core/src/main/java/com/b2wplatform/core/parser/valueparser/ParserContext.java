@@ -1,9 +1,9 @@
-package lv.b2wplatform.core.parser.valueparser;
+package com.b2wplatform.core.parser.valueparser;
 
 
-import lv.b2wplatform.core.model.definition.Type;
-import lv.b2wplatform.core.exception.B2WException;
-import lv.b2wplatform.core.exception.B2WInternalException;
+import com.b2wplatform.core.exception.B2WException;
+import com.b2wplatform.core.exception.B2WInternalException;
+import com.b2wplatform.core.model.definition.Type;
 
 import java.util.HashMap;
 import java.util.Map;

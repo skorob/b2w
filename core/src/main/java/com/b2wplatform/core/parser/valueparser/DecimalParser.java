@@ -1,7 +1,7 @@
-package lv.b2wplatform.core.parser.valueparser;
+package com.b2wplatform.core.parser.valueparser;
 
 
-import lv.b2wplatform.core.model.entity.Value;
+import com.b2wplatform.core.model.entity.Value;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

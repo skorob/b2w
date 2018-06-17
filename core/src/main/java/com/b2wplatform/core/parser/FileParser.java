@@ -1,12 +1,12 @@
-package lv.b2wplatform.core.parser;
+package com.b2wplatform.core.parser;
 
 
-import lv.b2wplatform.core.model.definition.Type;
-import lv.b2wplatform.core.model.entity.Value;
-import lv.b2wplatform.core.parser.valueparser.ValueParser;
-import lv.b2wplatform.core.exception.B2WInternalException;
-import lv.b2wplatform.core.model.entity.Entity;
-import lv.b2wplatform.core.parser.valueparser.ParserContext;
+import com.b2wplatform.core.model.definition.Type;
+import com.b2wplatform.core.model.entity.Value;
+import com.b2wplatform.core.parser.valueparser.ValueParser;
+import com.b2wplatform.core.exception.B2WInternalException;
+import com.b2wplatform.core.model.entity.Entity;
+import com.b2wplatform.core.parser.valueparser.ParserContext;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;

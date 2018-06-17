@@ -4,7 +4,8 @@ package com.b2wplatform.boot.service;
 import com.b2wplatform.boot.repo.UserRepository;
 import com.b2wplatform.model.ApplicationUser;
 import enums.UserStatus;
-import lv.b2wplatform.core.exception.B2WException;
+import com.b2wplatform.core.exception.B2WException;
+import com.b2wplatform.core.exception.B2WValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,8 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+        String login = userName.toLowerCase();
         ApplicationUser applicationUser = userRepository.findByLogin(userName);
         if (applicationUser == null) {
             throw new B2WException(new UsernameNotFoundException(userName));
@@ -39,7 +42,14 @@ public class UserService implements UserDetailsService {
     }
 
     public void signupUser(ApplicationUser user) {
-        user.setLogin(user.getLogin().toLowerCase());
+        String login = user.getLogin().toLowerCase();
+        ApplicationUser byLogin = userRepository.findByLogin(login);
+
+        if(byLogin!=null) {
+            throw new B2WValidationException("userAlreadyExists","","login");
+        }
+
+        user.setLogin(login);
         user.setSecuredPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

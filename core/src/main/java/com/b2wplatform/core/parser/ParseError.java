@@ -1,4 +1,4 @@
-package lv.b2wplatform.core.parser;
+package com.b2wplatform.core.parser;
 
 
 import lombok.Data;

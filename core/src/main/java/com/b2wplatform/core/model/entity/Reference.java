@@ -1,4 +1,4 @@
-package lv.b2wplatform.core.model.entity;
+package com.b2wplatform.core.model.entity;
 
 
 import java.math.BigInteger;

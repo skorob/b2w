@@ -3,6 +3,8 @@ import {AuthService} from "../auth.service";
 import {FormGroup} from "@angular/forms";
 import {Validators} from "@angular/forms";
 import {FormControl} from "@angular/forms";
+import {ValidationErrors} from "@angular/forms";
+import {ErrorHandlerService} from "../../../shared/error-handler.service";
 
 @Component({
   selector: 'app-signup',
@@ -12,25 +14,24 @@ export class SignupComponent implements OnInit {
 
   loginForm: FormGroup;
 
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private errorHandlerService: ErrorHandlerService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      'login': new FormControl(null, Validators.required),
+      'login': new FormControl(null,
+          [Validators.required,
+          Validators.email]),
       'password' : new FormControl(null, Validators.required)
     });
   }
 
   onSignup() {
-
     this.authService.signup(this.loginForm.value.login, this.loginForm.value.login).subscribe(
       data => {
-        console.log(data);
+        
       },
       err => {
-        console.log(err)
+        this.errorHandlerService.handleHttpError(err, this.loginForm);
       });;
   }
-
 }

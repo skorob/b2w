@@ -1,6 +1,6 @@
 package lv.carparts;
 
-import lv.b2wplatform.core.parser.ParseResult;
+import com.b2wplatform.core.parser.ParseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

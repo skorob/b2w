@@ -8,10 +8,11 @@
         [labelText]="'Mail'"
         [formGroup]="loginForm"
         [controlName]="'login'"
+        [errorDefs]="{
+          required: 'Login is required',email: 'Please enter login in valid mail format',
+          userAlreadyExists:'User with the same mail already exists'}">
 
-        [errorDefs]="{required: 'Login is required'}">
-
-        <input  #ref type="email" id="login" formControlName="login" class="form-control" >
+        <input  type="email" id="login" formControlName="login" class="form-control" >
 
       </control-feedback>
 
@@ -20,7 +21,7 @@
         [formGroup]="loginForm"
         [controlName]="'password'"
         [errorDefs]="{required: 'Password is required'}">
-        <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': loginForm.controls.password.invalid  && (loginForm.controls.password.touched || loginForm.controls.password.dirty)}">
+        <input type="password" id="password" formControlName="password" class="form-control">
         </control-feedback>
 
       <button class="button btn btn-success" type="submit"  [disabled]="!loginForm.valid">Sign Up</button>
