@@ -1,8 +1,8 @@
 
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {HttpClientModule, HttpClient} from "@angular/common/http";
-
+import {HttpClientModule, HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
+import {Observable} from "rxjs/index";
 
 
 @Injectable()
@@ -21,12 +21,19 @@ export class AuthService {
     });
   }
 
-  signin(login: string, password: string ) {
-
+  signin(login: string, password: string ) : Observable<HttpResponse> {
+    return this.http.post('/login', {
+      login: login,
+      password: password
+    }, { observe: 'response' });
   }
 
   getToken() {
     return this.token;
+  }
+
+  setToken(token:string) {
+    this.token = token;
   }
 
   isAuthenticated() {

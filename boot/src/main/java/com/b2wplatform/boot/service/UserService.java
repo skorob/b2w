@@ -29,9 +29,9 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         String login = userName.toLowerCase();
-        ApplicationUser applicationUser = userRepository.findByLogin(userName);
+        ApplicationUser applicationUser = userRepository.findByLogin(login);
         if (applicationUser == null) {
-            throw new B2WException(new UsernameNotFoundException(userName));
+            throw new B2WException(new UsernameNotFoundException(login));
         }
 
         if(applicationUser.getUserStatus() == UserStatus.NEW) {

@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup() {
-    this.authService.signup(this.loginForm.value.login, this.loginForm.value.login).subscribe(
+    this.authService.signup(this.loginForm.value.login, this.loginForm.value.password).subscribe(
       data => {
         this.router.navigate(['/signup-confirm']);
       },
