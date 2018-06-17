@@ -12,6 +12,7 @@ export class SignupComponent implements OnInit {
 
   loginForm: FormGroup;
 
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -31,9 +32,5 @@ export class SignupComponent implements OnInit {
         console.log(err)
       });;
   }
-
-  get name() { return this.loginForm.get('name'); }
-
-  get power() { return this.loginForm.get('power'); }
 
 }
