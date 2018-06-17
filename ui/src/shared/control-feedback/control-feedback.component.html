@@ -1,0 +1,11 @@
+
+<div #ref class="form-group" [ngClass]="{'is-invalid': isInvalid}">
+  <label for="{{controlName}}">{{labelText}}</label>
+  <ng-content></ng-content>
+  <div
+    *ngIf="isInvalid"
+    [ngClass]="{'invalid-feedback' : isInvalid}">
+    {{message}}
+  </div>
+
+</div>
