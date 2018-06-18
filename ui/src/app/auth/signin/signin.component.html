@@ -1,14 +1,27 @@
 <div class="row">
   <div class="col-xl-12 col-sm-10 col-md-8 col-md-2">
-    <form (ngSubmit)="onSignin(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="login">Mail</label>
-        <input type="email" id="login" name="login" ngModel class="form-control">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control">
-      </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSignin()" >
+
+      <control-feedback
+        [labelText]="'User Mail'"
+        [formGroup]="loginForm"
+        [controlName]="'login'"
+        [errorDefs]="{required: 'Login is required',email: 'Please enter login in valid mail format',
+          invalidLoginPassword:'Invalid user/password'}">
+
+        <input  type="email" id="login" formControlName="login" class="form-control" >
+
+      </control-feedback>
+
+
+      <control-feedback
+        [labelText]="'Password'"
+        [formGroup]="loginForm"
+        [controlName]="'password'"
+        [errorDefs]="{required: 'Password is required'}">
+        <input type="password" id="password" formControlName="password" class="form-control">
+      </control-feedback>
+
       <button class="btn button btn-primary" type="submit">Sign In</button>
     </form>
   </div>

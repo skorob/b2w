@@ -15,8 +15,12 @@ export class ErrorHandlerService {
         error[errorCode]=true;
         formGroup.controls[fieldName].setErrors(error);
     }
+  }
 
 
+  handleInvalidLoginPassword(errorResponse: any, formGroup: FormGroup) {
+    let error={invalidLoginPassword:true};
+    formGroup.controls['login'].setErrors(error);
   }
 
 }
