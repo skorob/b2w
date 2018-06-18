@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecuredLoginService {
 
 
-    @GetMapping("/api/login")
+    @GetMapping("/api/getcar")
     public UserCredentials getCredentials() {
         UserCredentials userCredentials = new UserCredentials();
         userCredentials.setPassword("OK");

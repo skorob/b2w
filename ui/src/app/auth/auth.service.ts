@@ -21,6 +21,10 @@ export class AuthService {
     });
   }
 
+  getCar() {
+    return this.http.get('/api/getcar');
+  }
+
   signin(login: string, password: string ) : Observable<HttpResponse> {
     return this.http.post('/login', {
       login: login,

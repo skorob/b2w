@@ -38,6 +38,12 @@ export class SigninComponent implements OnInit {
 
         if(data.headers.has("Auth-Token")) {
           this.authService.setToken(data.headers.get("Auth-Token"));
+          this.authService.getCar().subscribe(
+            data=>{
+              console.log("===="+JSON.stringify(data));
+          }
+          );
+
         }
         this.router.navigate(['/signup-confirm']);
       },
