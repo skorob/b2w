@@ -8,15 +8,15 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "APP_USER")
+@Table(name = "B2W_APP_USER")
 public class ApplicationUser extends UserCredentials {
 
     @Enumerated(EnumType.STRING)
-    private UserStatus userStatus;
+    @Column(name = "user_status", nullable = false)
+    private UserStatus userStatus = UserStatus.ACTIVE;
 
-    @Transient
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = UserBusinessPartnerRole.class, mappedBy = "applicationUser" )
     private List<UserBusinessPartnerRole> businessPartners;
-
 
     public UserStatus getUserStatus() {
         return userStatus;

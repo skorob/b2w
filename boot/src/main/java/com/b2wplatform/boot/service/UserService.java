@@ -1,6 +1,7 @@
 package com.b2wplatform.boot.service;
 
 
+import com.b2wplatform.boot.repo.BusinessProfileReporsitory;
 import com.b2wplatform.boot.repo.UserRepository;
 import com.b2wplatform.model.ApplicationUser;
 import enums.UserStatus;
@@ -23,6 +24,9 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
+    private BusinessProfileReporsitory businessProfileReporsitory;
+
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -43,13 +47,14 @@ public class UserService implements UserDetailsService {
 
     public void signupUser(ApplicationUser user) {
         String login = user.getLogin().toLowerCase();
-        ApplicationUser byLogin = userRepository.findByLogin(login);
+        user.setLogin(login);
+
+        ApplicationUser byLogin = userRepository.findByLogin(user.getLogin());
 
         if(byLogin!=null) {
             throw new B2WValidationException("userAlreadyExists","","login");
         }
 
-        user.setLogin(login);
         user.setSecuredPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

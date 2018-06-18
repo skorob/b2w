@@ -1,6 +1,9 @@
 package com.b2wplatform.model;
 
 
-public abstract class BusinessProfile {
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+public abstract class BusinessProfile  extends PlatformEntity{
 
 }
