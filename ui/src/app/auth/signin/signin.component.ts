@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
     const login = this.loginForm.value.login;
     const password = this.loginForm.value.password;
     this.authService.signin(login, password).subscribe(
-      (data:HttpResponse) => {
+      (data:HttpResponse<any>) => {
 
         if(data.headers.has("Auth-Token")) {
           this.authService.setToken(data.headers.get("Auth-Token"));

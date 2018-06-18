@@ -4,14 +4,16 @@ import {ControlFeedbackComponent} from './control-feedback/control-feedback.comp
 import {ErrorHandlerService} from "./error-handler.service";
 import {TokenInterceptor} from "../app/auth/token-interceptor";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {DropdownDirective} from "./dropdown.directive";
 
 @NgModule({
-  declarations: [ControlFeedbackComponent],
+  declarations: [ControlFeedbackComponent, DropdownDirective],
   imports: [
       CommonModule],
   exports: [
     CommonModule,
-    ControlFeedbackComponent
+    ControlFeedbackComponent,
+    DropdownDirective
   ],
   providers: [ErrorHandlerService, {
     provide: HTTP_INTERCEPTORS,

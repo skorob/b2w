@@ -8,11 +8,13 @@ export class DropdownDirective {
   @HostBinding('class.show')
   isOpen = false;
 
-  constructor(private elRef:ElementRef) {}
+  constructor(private elRef:ElementRef) {
 
 
-  @HostListener('click')
-  toggleOpen() {
+  }
+
+
+  @HostListener('click') toggleOpen() {
     this.isOpen = !this.isOpen;
     let submenu = this.elRef.nativeElement.querySelector('.dropdown-menu')
     if(this.isOpen) {

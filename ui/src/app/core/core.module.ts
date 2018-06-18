@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {AppRoutingModule} from "../app-routing.module";
 import {AuthService} from "../auth/auth.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
+    SharedModule,
     AppRoutingModule
   ],
   exports: [
