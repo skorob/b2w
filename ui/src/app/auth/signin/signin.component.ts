@@ -8,6 +8,7 @@ import {Validators} from "@angular/forms";
 import {FormControl} from "@angular/forms";
 import {ErrorHandlerService} from "../../../shared/error-handler.service";
 import {errorHandler} from "@angular/platform-browser/src/browser";
+import {ApplicationUser} from "../../model/application-user.class";
 
 @Component({
   selector: 'app-signin',
@@ -35,21 +36,22 @@ export class SigninComponent implements OnInit {
     const password = this.loginForm.value.password;
     this.authService.signin(login, password).subscribe(
       (data:HttpResponse<any>) => {
-
         if(data.headers.has("Auth-Token")) {
           this.authService.setToken(data.headers.get("Auth-Token"));
-          this.authService.getCar().subscribe(
-            data=>{
-              console.log("===="+JSON.stringify(data));
-          }
-          );
-
+          this.onSuccesfullLogin();
         }
-        this.router.navigate(['/signup-confirm']);
       },
       err => {
         this.errorHandlerService.handleInvalidLoginPassword(null, this.loginForm)
       });;
+  }
+
+
+  private onSuccesfullLogin(){
+      this.authService.readApplicationUser().then(
+        ((appUser:ApplicationUser)=>{
+          this.router.navigate(['/signin-home-page'+appUser.userStatus]);
+      }));
   }
 
 }

@@ -3,12 +3,13 @@ import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 import {HttpClientModule, HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs/index";
+import {getToken} from "@angular/compiler/src/css_parser/css_lexer";
+import {ApplicationUser} from "../model/application-user.class";
 
 
 @Injectable()
 export class AuthService {
 
-  token: string;
 
   constructor(private router: Router, private http: HttpClient) {
 
@@ -21,8 +22,12 @@ export class AuthService {
     });
   }
 
-  getCar() {
-    return this.http.get('/api/getcar');
+  readApplicationUser():Promise<ApplicationUser> {
+     return this.http.get<ApplicationUser>('/api/getappuser').toPromise<ApplicationUser>()
+       .then(((appUser:ApplicationUser)=>{
+         localStorage.setItem("appUser", JSON.stringify(appUser));
+         return appUser;
+       }));
   }
 
   signin(login: string, password: string ) : Observable<HttpResponse<any>> {
@@ -33,20 +38,20 @@ export class AuthService {
   }
 
   getToken() {
-    return this.token;
+    return localStorage.getItem('app_token');;
   }
 
   setToken(token:string) {
-    this.token = token;
+    localStorage.setItem('app_token', token);
   }
 
   isAuthenticated() {
-    return this.token!=null;
+    return this.getToken()!=null;
   }
 
 
   logout() {
-    this.token = null;
+    localStorage.removeItem('app_token');
   }
 
 }
