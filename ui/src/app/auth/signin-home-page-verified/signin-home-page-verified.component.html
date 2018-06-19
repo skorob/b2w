@@ -1,0 +1,17 @@
+<div class="card mt-5" style="width: 28rem;">
+  <div class="card-body">
+    <h5 class="card-title">You are logistic company</h5>
+    <p class="card-text">If you are expecting delivery orders.</p>
+    <button type="button" class="btn" [class.btn-primary]="!registerLogisticProfileOption" [class.btn-success]="registerLogisticProfileOption" (click)="registerLogisticProfile()">{{registerLogisticProfileOption ? 'Logistic profile will be activated' : 'Register Logistic Profile'}}</button>
+  </div>
+</div>
+
+<div class="card text-center mt-5" style="width: 28rem;">
+  <div class="card-body">
+    <h5 class="card-title">You are distribution company or you have goods to deliver</h5>
+    <p class="card-text">Please register for this functionality.</p>
+    <button type="button" class="btn" [class.btn-primary]="!registerDistributionProfileOption" [class.btn-success]="registerDistributionProfileOption" (click)="registerDistributionProfile()">{{registerDistributionProfileOption ? 'Distribution profile will be activated' : 'Register distribution profile'}}</button>
+  </div>
+</div>
+
+<button type="button" class="btn mt-5 btn-success" [disabled]="readyForActivation()" >Activate</button>

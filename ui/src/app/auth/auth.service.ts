@@ -30,12 +30,20 @@ export class AuthService {
        }));
   }
 
-  signin(login: string, password: string ) : Observable<HttpResponse<any>> {
+  signin(login: string, password: string ) : Promise<void> {
     return this.http.post('/login', {
       login: login,
       password: password
-    }, { observe: 'response' });
+    }, { observe: 'response' }).toPromise().
+      then((data:HttpResponse<any>) => {
+      if(data.headers.has("Auth-Token")) {
+        this.setToken(data.headers.get("Auth-Token"));
+        console.log("Current Token : "+this.getToken())
+      }
+      return;
+    });
   }
+
 
   getToken() {
     return localStorage.getItem('app_token');;

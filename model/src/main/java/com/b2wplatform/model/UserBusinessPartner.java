@@ -7,10 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "B2W_USER_BUSINESS_PARTNER", uniqueConstraints = {@UniqueConstraint(columnNames = {
-        "fk_app_user_id",
-        "fk_business_partner_id"})})
-public class UserBusinessPartnerRole implements Serializable{
+@Table(name = "B2W_USER_BUSINESS_PARTNER")
+public class UserBusinessPartner implements Serializable{
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id")
     @EmbeddedId

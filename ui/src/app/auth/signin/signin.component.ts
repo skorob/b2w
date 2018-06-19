@@ -15,8 +15,7 @@ import {ApplicationUser} from "../../model/application-user.class";
   templateUrl: './signin.component.html'
 })
 export class SigninComponent implements OnInit {
-
-
+  
   loginForm: FormGroup;
 
   constructor(private authService: AuthService, private errorHandlerService: ErrorHandlerService, private router: Router) { }
@@ -31,15 +30,13 @@ export class SigninComponent implements OnInit {
     });
   }
 
+
   onSignin() {
     const login = this.loginForm.value.login;
     const password = this.loginForm.value.password;
-    this.authService.signin(login, password).subscribe(
-      (data:HttpResponse<any>) => {
-        if(data.headers.has("Auth-Token")) {
-          this.authService.setToken(data.headers.get("Auth-Token"));
+    this.authService.signin(login, password).then(
+      (data) => {
           this.onSuccesfullLogin();
-        }
       },
       err => {
         this.errorHandlerService.handleInvalidLoginPassword(null, this.loginForm)
@@ -50,7 +47,10 @@ export class SigninComponent implements OnInit {
   private onSuccesfullLogin(){
       this.authService.readApplicationUser().then(
         ((appUser:ApplicationUser)=>{
-          this.router.navigate(['/signin-home-page'+appUser.userStatus]);
+          console.log(JSON.stringify(appUser));
+          if(appUser.userStatus==='verified' || !appUser.businessPartners) {
+            this.router.navigate(['/signin-confirm-home-page-verified']);
+          }
       }));
   }
 

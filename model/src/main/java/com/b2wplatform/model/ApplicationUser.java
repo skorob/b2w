@@ -15,8 +15,8 @@ public class ApplicationUser extends UserCredentials {
     @Column(name = "user_status", nullable = false)
     private UserStatus userStatus = UserStatus.ACTIVE;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = UserBusinessPartnerRole.class, mappedBy = "applicationUser" )
-    private List<UserBusinessPartnerRole> businessPartners;
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = UserBusinessPartner.class, mappedBy = "applicationUser" )
+    private List<UserBusinessPartner> businessPartners;
 
     public UserStatus getUserStatus() {
         return userStatus;

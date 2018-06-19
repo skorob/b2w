@@ -7,12 +7,14 @@ import {AuthService} from "./auth.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
 import { SignupConfirmationComponent } from './signup-confirmation/signup-confirmation.component';
+import { SigninHomePageVerifiedComponent } from './signin-home-page-verified/signin-home-page-verified.component';
 
 @NgModule({
   declarations: [
     SigninComponent,
     SignupComponent,
-    SignupConfirmationComponent
+    SignupConfirmationComponent,
+    SigninHomePageVerifiedComponent
   ],
   imports: [
     FormsModule,
