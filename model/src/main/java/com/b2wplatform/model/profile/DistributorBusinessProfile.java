@@ -1,4 +1,4 @@
-package com.b2wplatform.model;
+package com.b2wplatform.model.profile;
 
 
 import javax.persistence.Entity;

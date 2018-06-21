@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   readApplicationUser():Promise<ApplicationUser> {
-     return this.http.get<ApplicationUser>('/api/getappuser').toPromise<ApplicationUser>()
+     return this.http.get<ApplicationUser>('/api/user/getappuser').toPromise<ApplicationUser>()
        .then(((appUser:ApplicationUser)=>{
          localStorage.setItem("appUser", JSON.stringify(appUser));
          return appUser;
@@ -61,5 +61,11 @@ export class AuthService {
   logout() {
     localStorage.removeItem('app_token');
   }
+
+
+  activate(activationConfig:any):Promise<Object> {
+    return this.http.post('/api/profile/activate', activationConfig).toPromise();
+  }
+
 
 }

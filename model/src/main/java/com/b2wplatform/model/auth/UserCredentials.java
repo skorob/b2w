@@ -1,5 +1,7 @@
-package com.b2wplatform.model;
+package com.b2wplatform.model.auth;
 
+
+import com.b2wplatform.model.PlatformEntity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

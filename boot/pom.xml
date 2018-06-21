@@ -79,6 +79,11 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!-- APACHE COMMONS -->
+        <!--<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency> -->
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
