@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
 import {LoggedUserModule} from "./loggeduser/logged-user.module";
 import {LoggedUserRoutingModule} from "./loggeduser/logged-user-routing.module";
+import {NonLoggedUserModule} from "./nonloggeduser/non-logged-user.module";
 
 
 @NgModule({
@@ -17,12 +18,12 @@ import {LoggedUserRoutingModule} from "./loggeduser/logged-user-routing.module";
     CommonModule,
     SharedModule,
     AppRoutingModule,
+    NonLoggedUserModule,
     LoggedUserModule
   ],
   exports: [
     HeaderComponent
-  ],
-  providers: [AuthService]
+  ]
 })
 
 

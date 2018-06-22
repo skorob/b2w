@@ -51,7 +51,7 @@ export class SigninComponent implements OnInit {
           if(appUser.userStatus==='verified' || (!appUser.businessPartners || appUser.businessPartners.length==0)) {
             this.router.navigate(['/signin-confirm-home-page-verified']);
           } else {
-            this.router.navigate(['/logged-user-home']);
+            this.router.navigate(['/home']);
           }
       }));
   }

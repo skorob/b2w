@@ -50,7 +50,7 @@ export class SigninHomePageVerifiedComponent implements OnInit {
     this.authService.activate(activationConfig).then(
       data=> {
         this.authService.readApplicationUser().then( data=> {
-          this.router.navigate(['/logged-user-home']);
+          this.router.navigate(['/home']);
         });
       }
     );

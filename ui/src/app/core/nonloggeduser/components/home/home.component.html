@@ -1,0 +1,15 @@
+<ng-template [ngIf]="isAuthenticated()">
+  <app-logged-user-home></app-logged-user-home>
+</ng-template>
+<ng-template [ngIf]="!isAuthenticated()">
+
+  <div class="alert alert-success mt-5" role="alert">
+    <h4 class="alert-heading"><b>xLogistic</b> Non Logged user main page</h4>
+    <p>Hello user</p>
+    <hr>
+    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+  </div>
+
+</ng-template>
+
+

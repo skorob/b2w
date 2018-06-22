@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoggedUserRoutingModule} from "./logged-user-routing.module";
-import {LoggedUserHomeComponent} from "./loggeduserhome/logged-user-home.component";
+import {LoggedUserHomeComponent} from "./logged-user-home/logged-user-home.component";
 
 @NgModule({
 
