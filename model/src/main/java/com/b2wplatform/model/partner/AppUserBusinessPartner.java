@@ -1,7 +1,7 @@
-package com.b2wplatform.model.auth;
+package com.b2wplatform.model.partner;
 
 
-import com.b2wplatform.model.profile.BusinessPartner;
+import com.b2wplatform.model.auth.AppUser;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import enums.UserRole;
 
@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Table(name = "B2W_USER_BUSINESS_PARTNER", uniqueConstraints = {@UniqueConstraint(columnNames = {
         "fk_app_user_id",
         "fk_business_partner_id"})})
-
 public class AppUserBusinessPartner implements Serializable{
 
     @EmbeddedId

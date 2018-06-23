@@ -1,7 +1,9 @@
-package com.b2wplatform.model.profile;
+package com.b2wplatform.model.partner;
 
 
 import com.b2wplatform.model.PlatformEntity;
+import com.b2wplatform.model.profile.DistributorBusinessProfile;
+import com.b2wplatform.model.profile.LogisticBusinessProfile;
 
 import javax.persistence.*;
 

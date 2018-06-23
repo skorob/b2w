@@ -1,7 +1,7 @@
 package com.b2wplatform.model.auth;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.b2wplatform.model.partner.AppUserBusinessPartner;
 import enums.UserStatus;
 
 import javax.persistence.*;
@@ -32,7 +32,5 @@ public class AppUser extends UserCredentials {
         return businessPartners;
     }
 
-    public void setBusinessPartners(List<AppUserBusinessPartner> businessPartners) {
-        this.businessPartners = businessPartners;
-    }
+
 }

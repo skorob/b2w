@@ -7,7 +7,7 @@ import com.b2wplatform.boot.service.user.repo.UserRepository;
 import com.b2wplatform.core.exception.B2WException;
 import com.b2wplatform.core.exception.B2WValidationException;
 import com.b2wplatform.model.auth.AppUser;
-import com.b2wplatform.model.auth.AppUserBusinessPartner;
+import com.b2wplatform.model.partner.AppUserBusinessPartner;
 import enums.UserStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

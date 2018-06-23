@@ -1,7 +1,7 @@
 package com.b2wplatform.model.task;
 
 
-import com.b2wplatform.model.profile.BusinessPartner;
+import com.b2wplatform.model.partner.BusinessPartner;
 
 import javax.persistence.*;
 

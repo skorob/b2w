@@ -1,4 +1,4 @@
-package com.b2wplatform.model.auth;
+package com.b2wplatform.model.partner;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

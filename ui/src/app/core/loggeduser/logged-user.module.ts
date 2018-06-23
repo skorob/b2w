@@ -10,8 +10,7 @@ import {LoggedUserHomeComponent} from "./logged-user-home/logged-user-home.compo
   ],
 
   imports: [
-    CommonModule,
-    LoggedUserRoutingModule
+    CommonModule
   ],
   exports: [LoggedUserHomeComponent]
 })

@@ -2,7 +2,7 @@ package com.b2wplatform.boot.service.user;
 
 
 import com.b2wplatform.model.auth.AppUser;
-import com.b2wplatform.model.auth.AppUserBusinessPartner;
+import com.b2wplatform.model.partner.AppUserBusinessPartner;
 
 public interface UserService {
 
