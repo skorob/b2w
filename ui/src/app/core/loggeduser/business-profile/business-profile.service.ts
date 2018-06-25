@@ -50,4 +50,14 @@ export class BusinessPartnerProfileService {
   }
 
 
+  removeMyBusinessPartner(myBusinessPartner: MyBusinessPartner) {
+    return this.http.post('/api/business-partner/remove-my-business-partner', {
+      businessPartner : myBusinessPartner.businessPartner,
+      myBusinessPartner : myBusinessPartner.myBusinessPartner
+    }, { observe: 'response' }).toPromise().
+    then((data:HttpResponse<any>) => {
+
+      console.log("Remove ny business partner");
+    });
+  }
 }

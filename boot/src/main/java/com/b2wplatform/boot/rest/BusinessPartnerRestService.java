@@ -35,5 +35,10 @@ public class BusinessPartnerRestService {
         return businessPartnerService.findMyBusinessPartners(currentBusinessPartner);
     }
 
+    @PostMapping("/remove-my-business-partner")
+    public void removeMyBusinessPartner(@RequestBody MyBusinessPartner myBusinessPartner) {
+        businessPartnerService.removeMyBusinessPartner(myBusinessPartner);
+    }
+
 
 }

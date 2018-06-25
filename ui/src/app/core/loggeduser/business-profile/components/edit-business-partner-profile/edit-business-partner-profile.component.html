@@ -22,3 +22,22 @@
   </div>
 </div>
 
+
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Business Partner Name</th>
+    <th scope="col">Logistic Profile</th>
+    <th scope="col">Distributor Profile</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let myBusinessPartner of myBusinessPartners">
+    <td>{{myBusinessPartner.myBusinessPartner.name}}</td>
+    <td>{{myBusinessPartner.myBusinessPartner.logisticProfile ? 'X' : ''}}</td>
+    <td>{{myBusinessPartner.myBusinessPartner.distributorProfile ? 'X' : ''}}</td>
+    <td><button type="button" class="btn btn-primary btn-sm" (click)="removeMyBusinessPartner(myBusinessPartner)">Remove from partnership</button></td>
+  </tr>
+  </tbody>
+</table>

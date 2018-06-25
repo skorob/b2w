@@ -85,5 +85,10 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
         return this.myBusinessPartnerRepository.findMyBusinessPartners(currentBusinesPartnerId);
     }
 
+    @Override
+    public void removeMyBusinessPartner(MyBusinessPartner myBusinessPartner) {
+        this.myBusinessPartnerRepository.delete(myBusinessPartner);
+    }
+
 
 }

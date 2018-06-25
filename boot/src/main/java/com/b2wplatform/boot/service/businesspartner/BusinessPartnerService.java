@@ -15,4 +15,6 @@ public interface BusinessPartnerService {
     void assignMyBusinessPartner(MyBusinessPartner myBusinessPartner);
 
     List<MyBusinessPartner> findMyBusinessPartners(Long currentBusinesPartner);
+
+    void removeMyBusinessPartner(MyBusinessPartner myBusinessPartner);
 }

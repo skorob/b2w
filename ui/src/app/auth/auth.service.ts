@@ -27,7 +27,9 @@ export class AuthService {
      return this.http.get<ApplicationUser>('/api/app-user/get').toPromise<ApplicationUser>()
        .then(((appUser:ApplicationUser)=>{
          localStorage.setItem("App-User", JSON.stringify(appUser));
-         localStorage.setItem("Business-Partner", JSON.stringify(appUser.businessPartners[0].businessPartner));
+         if(appUser.businessPartners.length>0) {
+           localStorage.setItem("Business-Partner", JSON.stringify(appUser.businessPartners[0].businessPartner));
+         }
          return appUser;
        }));
   }

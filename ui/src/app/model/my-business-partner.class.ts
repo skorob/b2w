@@ -4,6 +4,7 @@ export class MyBusinessPartner {
 
 
   businessPartner:BusinessPartner;
+  myBusinessPartner:BusinessPartner;
   role:string;
 
 }

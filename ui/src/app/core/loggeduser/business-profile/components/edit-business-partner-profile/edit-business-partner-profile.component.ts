@@ -23,6 +23,7 @@ export class EditBusinessPartnerProfileComponent implements OnInit {
     this.businessPartnerProfileService.readAllBusinessPartners().then((businessPartners:BusinessPartner[]) => {
       this.businessPartners = businessPartners;
     });
+    this.readMyBusinessPartners();
   }
 
   private selectchange(args) {
@@ -35,12 +36,27 @@ export class EditBusinessPartnerProfileComponent implements OnInit {
 
   private assignMyBusinessPartner() {
     this.businessPartnerProfileService.assignMyBusinessPartner(this.selectedBusinesParthnerId).then(data=> {
-          this.businessPartnerProfileService.findMyBusinessPartners().then((myBusinessPartners :  MyBusinessPartner[])  => {
-            this.myBusinessPartners = myBusinessPartners;
-            console.log(JSON.stringify(this.myBusinessPartners));
-          });
+          this.readMyBusinessPartners();
       }
     );
   }
+
+  private removeMyBusinessPartner(myBusinessPartner: MyBusinessPartner) {
+    this.businessPartnerProfileService.removeMyBusinessPartner(myBusinessPartner).then(data=> {
+        this.readMyBusinessPartners();
+      }
+    );
+
+  }
+
+
+  private readMyBusinessPartners() {
+    this.businessPartnerProfileService.findMyBusinessPartners().then((myBusinessPartners :  MyBusinessPartner[])  => {
+      this.myBusinessPartners = myBusinessPartners;
+      console.log(JSON.stringify(this.myBusinessPartners));
+    });
+  }
+
+
 
 }
