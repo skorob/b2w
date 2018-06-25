@@ -7,10 +7,10 @@ import {MyBusinessPartner} from "../../../../../model/my-business-partner.class"
 
 @Component({
   selector: 'app-edit-business-profile',
-  templateUrl: './edit-business-partner-profile.component.html',
-  styleUrls: ['./edit-business-partner-profile.component.css']
+  templateUrl: './edit-business-partners.component.html',
+  styleUrls: ['./edit-business-partners.component.css']
 })
-export class EditBusinessPartnerProfileComponent implements OnInit {
+export class EditBusinessPartnersComponent implements OnInit {
 
   constructor(private businessPartnerProfileService: BusinessPartnerProfileService, private authService: AuthService) { }
 

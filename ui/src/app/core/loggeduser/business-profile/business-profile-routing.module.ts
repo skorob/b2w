@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 
 
-import {EditBusinessPartnerProfileComponent} from "./components/edit-business-partner-profile/edit-business-partner-profile.component";
+import {EditBusinessPartnersComponent} from "./components/edit-business-partners/edit-business-partners.component";
 
 const businessProfileRoutes: Routes = [
-  {path : 'edit-business-profile', component: EditBusinessPartnerProfileComponent }
+  {path : 'edit-business-profile', component: EditBusinessPartnersComponent }
 ];
 
 
