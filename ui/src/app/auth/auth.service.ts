@@ -5,6 +5,7 @@ import {HttpClientModule, HttpClient, HttpHeaders, HttpResponse} from "@angular/
 import {Observable} from "rxjs/index";
 import {getToken} from "@angular/compiler/src/css_parser/css_lexer";
 import {ApplicationUser} from "../model/application-user.class";
+import {BusinessPartner} from "../model/business-partner.class";
 
 
 @Injectable()
@@ -23,9 +24,10 @@ export class AuthService {
   }
 
   readApplicationUser():Promise<ApplicationUser> {
-     return this.http.get<ApplicationUser>('/api/user/getappuser').toPromise<ApplicationUser>()
+     return this.http.get<ApplicationUser>('/api/app-user/get').toPromise<ApplicationUser>()
        .then(((appUser:ApplicationUser)=>{
-         localStorage.setItem("appUser", JSON.stringify(appUser));
+         localStorage.setItem("App-User", JSON.stringify(appUser));
+         localStorage.setItem("Business-Partner", JSON.stringify(appUser.businessPartners[0].businessPartner));
          return appUser;
        }));
   }
@@ -44,13 +46,21 @@ export class AuthService {
     });
   }
 
+  getCurrentBusinessPartner():BusinessPartner {
+    return  JSON.parse(localStorage.getItem("Business-Partner"));
+  }
+
+  getAppUser():ApplicationUser {
+    return  JSON.parse(localStorage.getItem("App-User"));
+  }
+
 
   getToken() {
-    return localStorage.getItem('app_token');;
+    return localStorage.getItem('Auth-Token');;
   }
 
   setToken(token:string) {
-    localStorage.setItem('app_token', token);
+    localStorage.setItem('Auth-Token', token);
   }
 
   isAuthenticated() {
@@ -59,7 +69,7 @@ export class AuthService {
 
 
   logout() {
-    localStorage.removeItem('app_token');
+    localStorage.removeItem('Auth-Token');
   }
 
 

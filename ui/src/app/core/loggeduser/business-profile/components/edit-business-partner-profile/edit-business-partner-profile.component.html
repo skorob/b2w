@@ -1,0 +1,24 @@
+
+<div class="alert alert-success mt-5 mb-5" role="alert">
+  Please configure your business partners list.
+</div>
+
+
+<div class="input-group mb-3">
+
+  <select class="form-control"
+          placeholder="Please add you partners"
+          aria-label="Add your partner"
+          aria-describedby="basic-addon2"
+          (change)="selectchange($event)">>
+    <option value="0"></option>
+    <option *ngFor="let businessPartner of businessPartners" value={{businessPartner.id}}>
+      {{businessPartner.name}}
+    </option>
+  </select>
+
+  <div class="input-group-append" >
+    <button class="btn btn-outline-secondary" type="button" [disabled]="isDisabled()" (click)="assignMyBusinessPartner()">Add Partner</button>
+  </div>
+</div>
+

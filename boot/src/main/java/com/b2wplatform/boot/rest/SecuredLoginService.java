@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-@RequestMapping(path="/api/user")
+@RequestMapping(path="/api/app-user")
 public class SecuredLoginService {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getappuser")
+    @GetMapping("/get")
     public AppUser getAppUser() {
         return userService.loadApplicationUser();
     }

@@ -3,12 +3,12 @@ package com.b2wplatform.boot.rest;
 
 import com.b2wplatform.boot.service.businesspartner.BusinessPartnerService;
 import com.b2wplatform.model.auth.ActivationConfig;
+import com.b2wplatform.model.partner.BusinessPartner;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -24,4 +24,8 @@ public class BusinessProfileRestService {
         businessPartnerService.activateUserProfilesForUser(activationConfig);
     }
 
+    @GetMapping("/all")
+    public List<BusinessPartner> allBusinessPartners() {
+        return businessPartnerService.getAllBusinessPartners();
+    }
 }

@@ -8,19 +8,26 @@ import com.b2wplatform.model.auth.ActivationConfig;
 import com.b2wplatform.model.auth.AppUser;
 import com.b2wplatform.model.partner.AppUserBusinessPartner;
 import com.b2wplatform.model.partner.BusinessPartner;
+import com.b2wplatform.model.partner.MyBusinessPartner;
 import com.b2wplatform.model.profile.DistributorBusinessProfile;
 import com.b2wplatform.model.profile.LogisticBusinessProfile;
 import enums.BusinessProfileType;
+import enums.MyBusinessProfileRelation;
 import enums.UserRole;
 import io.jsonwebtoken.lang.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BusinessPartnerServiceImpl implements BusinessPartnerService {
 
     @Autowired
     private BusinessPartnerRepository businessPartnerRepository;
+
+    @Autowired
+    private MyBusinessPartnerRepository myBusinessPartnerRepository;
 
     @Autowired
     private UserService userService;
@@ -36,6 +43,18 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
             userService.saveUserBusinessParther(appUserBusinessPartner);
         }
     }
+
+    @Override
+    public List<BusinessPartner> getAllBusinessPartners() {
+        return this.businessPartnerRepository.findAll();
+    }
+
+    @Override
+    public void assignMyBusinessPartner(MyBusinessPartner myBusinessPartner) {
+        myBusinessPartner.setRelationStatus(MyBusinessProfileRelation.NORMAL);
+        this.myBusinessPartnerRepository.save(myBusinessPartner);
+    }
+
 
     private BusinessPartner createBusinessPartner(ActivationConfig activationConfig) {
         BusinessProfileType[] businessProfileTypes = activationConfig.getBusinessProfileTypes();
@@ -59,4 +78,12 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
 
         return   businessPartnerRepository.save(businessPartner);
     }
+
+
+    @Override
+    public List<MyBusinessPartner> findMyBusinessPartners(Long currentBusinesPartnerId) {
+        return this.myBusinessPartnerRepository.findMyBusinessPartners(currentBusinesPartnerId);
+    }
+
+
 }
