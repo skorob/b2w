@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 
 
-import {EditBusinessPartnersComponent} from "./components/edit-business-partners/edit-business-partners.component";
+import {EditMyBusinessPartnersComponent} from "./components/edit-my-business-partners/edit-my-business-partners.component";
+import {EditBusinessProfileComponent} from "./components/edit-business-profile/edit-business-profile.component";
 
 const businessProfileRoutes: Routes = [
-  {path : 'edit-business-profile', component: EditBusinessPartnersComponent }
+  {path : 'edit-my-business-partners', component: EditMyBusinessPartnersComponent },
+  {path : 'edit-business-profile', component: EditBusinessProfileComponent }
 ];
 
 

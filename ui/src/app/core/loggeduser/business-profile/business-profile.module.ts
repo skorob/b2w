@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core'
 
-import {EditBusinessPartnersComponent} from "./components/edit-business-partners/edit-business-partners.component";
+import {EditMyBusinessPartnersComponent} from "./components/edit-my-business-partners/edit-my-business-partners.component";
 import {BusinessProfileRoutingModule} from "./business-profile-routing.module";
 import {BusinessPartnerProfileService} from "./business-profile.service";
-import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
+import {EditBusinessProfileComponent} from "./components/edit-business-profile/edit-business-profile.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../../../shared/shared.module";
 
 
 @NgModule({
   declarations: [
-      EditBusinessPartnersComponent
+      EditMyBusinessPartnersComponent,
+      EditBusinessProfileComponent
   ],
   imports: [
-    CommonModule,
+    FormsModule,
+    SharedModule,
+    ReactiveFormsModule,
     BusinessProfileRoutingModule
   ],
   exports: [
-
+    EditBusinessProfileComponent
   ],
   providers: [BusinessPartnerProfileService]
 })

@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "B2W_BUSINESS_PARTNER")
 public class BusinessPartner extends PlatformEntity {
 
-    @Column(name = "name", nullable = false, length = 25)
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

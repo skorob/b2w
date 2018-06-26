@@ -63,6 +63,10 @@ export class ControlFeedbackComponent implements OnInit, OnDestroy {
         const messageForKeyIsFound = Object.keys(this.errorDefs).some(key => {
           if (this.currentControl.errors[key]) {
             this.message = this.errorDefs[key];
+            for (var subMessageKey in this.currentControl.errors[key]) {
+              this.message = this.message.replace("{"+subMessageKey+"}", this.currentControl.errors[key][subMessageKey] )
+            }
+
             return true;
           }
         });

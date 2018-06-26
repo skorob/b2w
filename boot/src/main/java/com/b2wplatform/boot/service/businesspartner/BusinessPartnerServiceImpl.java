@@ -11,10 +11,12 @@ import com.b2wplatform.model.partner.BusinessPartner;
 import com.b2wplatform.model.partner.MyBusinessPartner;
 import com.b2wplatform.model.profile.DistributorBusinessProfile;
 import com.b2wplatform.model.profile.LogisticBusinessProfile;
+import enums.BusinessProfileStatus;
 import enums.BusinessProfileType;
 import enums.MyBusinessProfileRelation;
 import enums.UserRole;
 import io.jsonwebtoken.lang.Collections;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +37,26 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
 
     public void activateUserProfilesForUser(ActivationConfig activationConfig) {
         AppUser appUser = userService.loadApplicationUser();
-        if(Collections.isEmpty(appUser.getBusinessPartners())) {
-            AppUserBusinessPartner appUserBusinessPartner = new AppUserBusinessPartner();
+        AppUserBusinessPartner appUserBusinessPartner = null;
+        if(activationConfig.getBusinessPartnerId()==null && Collections.isEmpty(appUser.getBusinessPartners())) {
+            appUserBusinessPartner = new AppUserBusinessPartner();
             appUserBusinessPartner.setAppUser(appUser);
             appUserBusinessPartner.setRole(UserRole.OWNER);
-            appUserBusinessPartner.setBusinessPartner(createBusinessPartner(activationConfig));
-            userService.saveUserBusinessParther(appUserBusinessPartner);
+
+        } else if(activationConfig.getBusinessPartnerId()!=null) {
+            appUserBusinessPartner = appUser.
+                    getBusinessPartners().
+                        stream().
+                        filter( s-> activationConfig.getBusinessPartnerId().equals(s.getBusinessPartner().getId())).findFirst().
+                    orElse(null);
+
         }
+
+        if(appUserBusinessPartner==null) {
+            throw new B2WValidationException(APIErrorCodes.INVALID_ACTIVATION_DATA, "The business profile with id ["+activationConfig.getBusinessPartnerId()+"] not exists");
+        }
+        appUserBusinessPartner.setBusinessPartner(createOrUpdateBusinessPartner(appUserBusinessPartner.getBusinessPartner(), activationConfig));
+        userService.saveUserBusinessParther(appUserBusinessPartner);
     }
 
     @Override
@@ -56,27 +71,45 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
     }
 
 
-    private BusinessPartner createBusinessPartner(ActivationConfig activationConfig) {
+    private BusinessPartner createOrUpdateBusinessPartner(BusinessPartner businessPartner, ActivationConfig activationConfig) {
         BusinessProfileType[] businessProfileTypes = activationConfig.getBusinessProfileTypes();
         if((businessProfileTypes==null)) {
             throw new B2WValidationException(APIErrorCodes.INVALID_ACTIVATION_DATA, "The business profile types are not defined", "businessProfileTypes");
         }
 
-        BusinessPartner businessPartner = new BusinessPartner();
+        BusinessPartner updatedBusinessPartner = activationConfig.getBusinessPartnerId()==null ? new BusinessPartner() : businessPartner;
+        updatedBusinessPartner.setName(activationConfig.getBusinessProfileName());
 
-        businessPartner.setName(activationConfig.getName());
 
-        for(BusinessProfileType businessProfileType : businessProfileTypes) {
-            if(businessProfileType.equals(BusinessProfileType.DISTRIBUTION)) {
-                businessPartner.setDistributorProfile(new DistributorBusinessProfile());
+        activatedDeactivateProfiles(businessProfileTypes, updatedBusinessPartner);
+
+
+        return   businessPartnerRepository.save(updatedBusinessPartner);
+    }
+
+    private void activatedDeactivateProfiles(BusinessProfileType[] businessProfileTypes, BusinessPartner updatedBusinessPartner) {
+        if(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.DISTRIBUTION)) {
+            if(updatedBusinessPartner.getDistributorProfile()==null) {
+                DistributorBusinessProfile newDistributorProfile = new DistributorBusinessProfile();
+                newDistributorProfile.setStatus(BusinessProfileStatus.ACTIVE);
+                updatedBusinessPartner.setDistributorProfile(newDistributorProfile);
             }
-
-            if(businessProfileType.equals(BusinessProfileType.LOGISTIC)) {
-                businessPartner.setLogisticProfile(new LogisticBusinessProfile());
+        } else {
+            if(updatedBusinessPartner.getDistributorProfile() !=null) {
+                updatedBusinessPartner.getDistributorProfile().setStatus(BusinessProfileStatus.DISABLED);
             }
         }
-
-        return   businessPartnerRepository.save(businessPartner);
+        if(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.LOGISTIC)) {
+            if(updatedBusinessPartner.getLogisticProfile()==null) {
+                LogisticBusinessProfile newLogisticProfile = new LogisticBusinessProfile();
+                newLogisticProfile.setStatus(BusinessProfileStatus.ACTIVE);
+                updatedBusinessPartner.setLogisticProfile(newLogisticProfile);
+            }
+        } else {
+            if(updatedBusinessPartner.getLogisticProfile() !=null) {
+                updatedBusinessPartner.getLogisticProfile().setStatus(BusinessProfileStatus.DISABLED);
+            }
+        }
     }
 
 

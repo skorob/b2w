@@ -5,7 +5,9 @@ import enums.BusinessProfileType;
 
 public class ActivationConfig {
 
-    private String name="[NAME]";
+    private String businessProfileName;
+
+    private Long businessPartnerId;
 
     private BusinessProfileType[] businessProfileTypes;
 
@@ -17,11 +19,17 @@ public class ActivationConfig {
         this.businessProfileTypes = businessProfileTypes;
     }
 
-    public String getName() {
-        return name;
+    public String getBusinessProfileName() {
+        return businessProfileName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBusinessProfileName(String businessProfileName) {
+        this.businessProfileName = businessProfileName;
+    }
+
+    public Long getBusinessPartnerId() { return businessPartnerId;  }
+
+    public void setBusinessPartnerId(Long businessPartnerId) {
+        this.businessPartnerId = businessPartnerId;
     }
 }

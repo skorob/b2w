@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import {BusinessPartnerProfileService} from "../../business-profile.service";
 import {BusinessPartner} from "../../../../../model/business-partner.class";
 import {AuthService} from "../../../../../auth/auth.service";
-import {ApplicationUserBusinessProfile} from "../../../../../model/app-user-business-partner.class";
+
 import {MyBusinessPartner} from "../../../../../model/my-business-partner.class";
 
 @Component({
-  selector: 'app-edit-business-profile',
-  templateUrl: './edit-business-partners.component.html',
-  styleUrls: ['./edit-business-partners.component.css']
+  selector: 'app-edit-business-partners-profile',
+  templateUrl: './edit-my-business-partners.component.html',
+  styleUrls: ['./edit-my-business-partners.component.css']
 })
-export class EditBusinessPartnersComponent implements OnInit {
+export class EditMyBusinessPartnersComponent implements OnInit {
 
   constructor(private businessPartnerProfileService: BusinessPartnerProfileService, private authService: AuthService) { }
 

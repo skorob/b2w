@@ -72,6 +72,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('Auth-Token');
+    localStorage.removeItem('Auth-User');
+    localStorage.removeItem('Business-Partner');
   }
 
 

@@ -15,6 +15,14 @@ public class B2WValidationException extends B2WException {
         this.fieldName = fieldName;
     }
 
+    public B2WValidationException(String errorCode, String errorMessage) {
+        super(errorMessage);
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+
+    }
+
+
     public B2WValidationException(String message, Throwable cause, String errorCode, String errorMessage) {
         super(message, cause);
         this.errorCode = errorCode;

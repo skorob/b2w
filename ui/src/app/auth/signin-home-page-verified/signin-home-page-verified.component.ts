@@ -8,53 +8,10 @@ import {Router} from "@angular/router";
 })
 export class SigninHomePageVerifiedComponent implements OnInit {
 
-  constructor(private authService:AuthService, private router: Router) { }
+  constructor() { }
 
-
-  registerLogisticProfileOption:boolean=false;
-  registerDistributionProfileOption:boolean=false;
-
-
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  registerLogisticProfile() {
-    this.registerLogisticProfileOption = !this.registerLogisticProfileOption;
-  }
-
-  registerDistributionProfile() {
-    this.registerDistributionProfileOption = !this.registerDistributionProfileOption;
-  }
-
-  readyForActivation():boolean {
-    return  !(this.registerDistributionProfileOption || this.registerLogisticProfileOption);
-  }
-
-  activate() {
-    let activationConfig:any={};
-
-    let activationProfiles=[];
-
-    if(this.registerDistributionProfileOption) {
-      activationProfiles.push('DISTRIBUTION');
-    }
-
-    if(this.registerLogisticProfileOption) {
-      activationProfiles.push('LOGISTIC');
-    }
-
-    if(activationProfiles.length>0) {
-      activationConfig["businessProfileTypes"]=activationProfiles;
-    }
-
-    this.authService.activate(activationConfig).then(
-      data=> {
-        this.authService.readApplicationUser().then( data=> {
-          this.router.navigate(['/home']);
-        });
-      }
-    );
-
-  }
 
 }

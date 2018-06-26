@@ -8,6 +8,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../shared/shared.module";
 import { SignupConfirmationComponent } from './signup-confirmation/signup-confirmation.component';
 import { SigninHomePageVerifiedComponent } from './signin-home-page-verified/signin-home-page-verified.component';
+import {BusinessProfileModule} from "../core/loggeduser/business-profile/business-profile.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SigninHomePageVerifiedComponent } from './signin-home-page-verified/sig
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    BusinessProfileModule
   ],
   providers : [AuthService]
 
