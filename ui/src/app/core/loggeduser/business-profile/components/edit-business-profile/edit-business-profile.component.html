@@ -27,6 +27,6 @@
   </div>
 </div>
 
-<button type="submit" class="btn mt-5 btn-success" [disabled]="readyForActivation()">Activate</button>
+<button type="submit" class="btn mt-5 btn-success" [disabled]="!readyForActivation()">Activate</button>
 
 </form>

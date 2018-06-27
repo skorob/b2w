@@ -1,5 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
+import {Router} from "@angular/router";
+import * as EventEmitter from "eventemitter3";
+import {Observable} from "rxjs/internal/Observable";
+import {SubjectSubscriber} from "rxjs/internal/Subject";
+import {Subscriber} from "rxjs/internal-compatibility";
+import {Subscription} from "rxjs/internal/Subscription";
 
 
 
@@ -10,8 +16,23 @@ import {AuthService} from "../../auth/auth.service";
 )
 
 
-export class HeaderComponent {
-  constructor(private authService:AuthService) { }
+
+export class HeaderComponent implements OnInit, OnDestroy {
+  constructor(private authService:AuthService, private router: Router) { }
+
+
+  profileName:string;
+
+  profileNameSubscriber:Subscription;
+
+
+  ngOnInit(): void {
+      this.profileNameSubscriber = this.authService.getUserProfileNameObservable().subscribe(profileName => {
+          this.profileName = profileName;
+      } );
+  }
+
+
 
   isAuthenticated() {
     return this.authService.isAuthenticated();
@@ -20,7 +41,19 @@ export class HeaderComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
+
+  ngOnDestroy(): void {
+    this.profileNameSubscriber.unsubscribe();
+  }
+
+
+
+
+
+
+
 
 }
 

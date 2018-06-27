@@ -2,6 +2,7 @@ package com.b2wplatform.boot.service.businesspartner;
 
 
 import com.b2wplatform.boot.service.user.UserService;
+import com.b2wplatform.boot.tools.BusinessPartnerTool;
 import com.b2wplatform.core.api.APIErrorCodes;
 import com.b2wplatform.core.exception.B2WValidationException;
 import com.b2wplatform.model.auth.ActivationConfig;
@@ -9,9 +10,6 @@ import com.b2wplatform.model.auth.AppUser;
 import com.b2wplatform.model.partner.AppUserBusinessPartner;
 import com.b2wplatform.model.partner.BusinessPartner;
 import com.b2wplatform.model.partner.MyBusinessPartner;
-import com.b2wplatform.model.profile.DistributorBusinessProfile;
-import com.b2wplatform.model.profile.LogisticBusinessProfile;
-import enums.BusinessProfileStatus;
 import enums.BusinessProfileType;
 import enums.MyBusinessProfileRelation;
 import enums.UserRole;
@@ -55,7 +53,7 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
         if(appUserBusinessPartner==null) {
             throw new B2WValidationException(APIErrorCodes.INVALID_ACTIVATION_DATA, "The business profile with id ["+activationConfig.getBusinessPartnerId()+"] not exists");
         }
-        appUserBusinessPartner.setBusinessPartner(createOrUpdateBusinessPartner(appUserBusinessPartner.getBusinessPartner(), activationConfig));
+        appUserBusinessPartner.setBusinessPartner(createOrUpdateBusinessPartnerWithProfiles(appUserBusinessPartner.getBusinessPartner(), activationConfig));
         userService.saveUserBusinessParther(appUserBusinessPartner);
     }
 
@@ -71,46 +69,23 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
     }
 
 
-    private BusinessPartner createOrUpdateBusinessPartner(BusinessPartner businessPartner, ActivationConfig activationConfig) {
+    private BusinessPartner createOrUpdateBusinessPartnerWithProfiles(BusinessPartner businessPartner, ActivationConfig activationConfig) {
         BusinessProfileType[] businessProfileTypes = activationConfig.getBusinessProfileTypes();
         if((businessProfileTypes==null)) {
             throw new B2WValidationException(APIErrorCodes.INVALID_ACTIVATION_DATA, "The business profile types are not defined", "businessProfileTypes");
         }
 
         BusinessPartner updatedBusinessPartner = activationConfig.getBusinessPartnerId()==null ? new BusinessPartner() : businessPartner;
+
         updatedBusinessPartner.setName(activationConfig.getBusinessProfileName());
 
+        BusinessPartnerTool.activateDistibutorProfile(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.DISTRIBUTION), updatedBusinessPartner);
 
-        activatedDeactivateProfiles(businessProfileTypes, updatedBusinessPartner);
-
+        BusinessPartnerTool.activateLogisticProfile(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.LOGISTIC), updatedBusinessPartner);
 
         return   businessPartnerRepository.save(updatedBusinessPartner);
     }
 
-    private void activatedDeactivateProfiles(BusinessProfileType[] businessProfileTypes, BusinessPartner updatedBusinessPartner) {
-        if(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.DISTRIBUTION)) {
-            if(updatedBusinessPartner.getDistributorProfile()==null) {
-                DistributorBusinessProfile newDistributorProfile = new DistributorBusinessProfile();
-                newDistributorProfile.setStatus(BusinessProfileStatus.ACTIVE);
-                updatedBusinessPartner.setDistributorProfile(newDistributorProfile);
-            }
-        } else {
-            if(updatedBusinessPartner.getDistributorProfile() !=null) {
-                updatedBusinessPartner.getDistributorProfile().setStatus(BusinessProfileStatus.DISABLED);
-            }
-        }
-        if(ArrayUtils.contains(businessProfileTypes, BusinessProfileType.LOGISTIC)) {
-            if(updatedBusinessPartner.getLogisticProfile()==null) {
-                LogisticBusinessProfile newLogisticProfile = new LogisticBusinessProfile();
-                newLogisticProfile.setStatus(BusinessProfileStatus.ACTIVE);
-                updatedBusinessPartner.setLogisticProfile(newLogisticProfile);
-            }
-        } else {
-            if(updatedBusinessPartner.getLogisticProfile() !=null) {
-                updatedBusinessPartner.getLogisticProfile().setStatus(BusinessProfileStatus.DISABLED);
-            }
-        }
-    }
 
 
     @Override

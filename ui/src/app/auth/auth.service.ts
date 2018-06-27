@@ -2,7 +2,7 @@
 import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
 import {HttpClientModule, HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs/index";
+import {Observable, Subject} from "rxjs/index";
 import {getToken} from "@angular/compiler/src/css_parser/css_lexer";
 import {ApplicationUser} from "../model/application-user.class";
 import {BusinessPartner} from "../model/business-partner.class";
@@ -15,6 +15,8 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) {
 
   }
+
+  private  userProfileNameObservable = new Subject<string>();
 
   signup(login: string, password: string) {
     return this.http.post('/api/auth/sign-up', {
@@ -30,6 +32,7 @@ export class AuthService {
          if(appUser.businessPartners.length>0) {
            localStorage.setItem("Business-Partner", JSON.stringify(appUser.businessPartners[0].businessPartner));
          }
+         this.notifyObservable();
          return appUser;
        }));
   }
@@ -74,6 +77,7 @@ export class AuthService {
     localStorage.removeItem('Auth-Token');
     localStorage.removeItem('Auth-User');
     localStorage.removeItem('Business-Partner');
+    this.notifyObservable();
   }
 
 
@@ -81,5 +85,22 @@ export class AuthService {
     return this.http.post('/api/profile/activate', activationConfig).toPromise();
   }
 
+
+  notifyObservable() {
+    let userName = null;
+    if(this.isAuthenticated()) {
+      userName=this.getAppUser().login;
+      let currentBusinessPartner = this.getCurrentBusinessPartner();
+      if(currentBusinessPartner) {
+        userName=userName +"/"+currentBusinessPartner.name
+      }
+    }
+
+    this.userProfileNameObservable.next(userName);
+  }
+
+  getUserProfileNameObservable() : Subject<string> {
+    return this.userProfileNameObservable;
+  }
 
 }

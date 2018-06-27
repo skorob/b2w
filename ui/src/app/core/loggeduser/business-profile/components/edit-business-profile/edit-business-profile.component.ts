@@ -12,8 +12,6 @@ export class EditBusinessProfileComponent implements OnInit {
 
   businessProfileForm: FormGroup;
 
-  @Input()
-  gotoHome:boolean = false;
 
   constructor(private authService:AuthService, private router: Router) {
 
@@ -34,6 +32,7 @@ export class EditBusinessProfileComponent implements OnInit {
     });
 
 
+
     this.registerDistributionProfileOption =  currentBusinessPartner && currentBusinessPartner.distributorProfile &&  (currentBusinessPartner.distributorProfile.status=='ACTIVE');
     this.registerLogisticProfileOption = currentBusinessPartner && currentBusinessPartner.logisticProfile && (currentBusinessPartner.logisticProfile.status=='ACTIVE');
   }
@@ -47,7 +46,7 @@ export class EditBusinessProfileComponent implements OnInit {
   }
 
   readyForActivation():boolean {
-    return  !(this.registerDistributionProfileOption || this.registerLogisticProfileOption);
+    return  (this.registerDistributionProfileOption || this.registerLogisticProfileOption) && (this.businessProfileForm.valid);
   }
 
   onActivate() {
@@ -74,9 +73,7 @@ export class EditBusinessProfileComponent implements OnInit {
     this.authService.activate(activationConfig).then(
       data=> {
         this.authService.readApplicationUser().then( data=> {
-          if(this.gotoHome) {
-            this.router.navigate(['/home']);
-          }
+        this.router.navigate(['/home']);
         });
       }
     );
