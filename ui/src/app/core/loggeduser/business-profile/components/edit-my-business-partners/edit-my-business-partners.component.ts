@@ -14,10 +14,11 @@ export class EditMyBusinessPartnersComponent implements OnInit {
 
   constructor(private businessPartnerProfileService: BusinessPartnerProfileService, private authService: AuthService) { }
 
-  private businessPartners: BusinessPartner[];
+  businessPartners: BusinessPartner[];
+  myBusinessPartners: MyBusinessPartner[];
   private selectedBusinesParthnerId:number;
 
-  private myBusinessPartners: MyBusinessPartner[];
+
 
   ngOnInit() {
     this.businessPartnerProfileService.readAllBusinessPartners().then((businessPartners:BusinessPartner[]) => {
@@ -26,15 +27,15 @@ export class EditMyBusinessPartnersComponent implements OnInit {
     this.readMyBusinessPartners();
   }
 
-  private selectchange(args) {
+  selectchange(args) {
     this.selectedBusinesParthnerId = +args.target.value;
   }
 
-  private isDisabled() : boolean {
+  isDisabled() : boolean {
     return this.selectedBusinesParthnerId==null;
   }
 
-  private assignMyBusinessPartner() {
+  assignMyBusinessPartner() {
     this.businessPartnerProfileService.assignMyBusinessPartner(this.selectedBusinesParthnerId).then(data=> {
           this.readMyBusinessPartners();
       }

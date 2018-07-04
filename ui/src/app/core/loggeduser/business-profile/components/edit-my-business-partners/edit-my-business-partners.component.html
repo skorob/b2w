@@ -35,8 +35,8 @@
   <tbody>
   <tr *ngFor="let myBusinessPartner of myBusinessPartners">
     <td>{{myBusinessPartner.myBusinessPartner.name}}</td>
-    <td>{{myBusinessPartner.myBusinessPartner.logisticProfile ? 'X' : ''}}</td>
-    <td>{{myBusinessPartner.myBusinessPartner.distributorProfile ? 'X' : ''}}</td>
+    <td>{{myBusinessPartner.myBusinessPartner.logisticProfile && myBusinessPartner.myBusinessPartner.logisticProfile.status=='ACTIVE'  ? 'X' : ''}}</td>
+    <td>{{myBusinessPartner.myBusinessPartner.distributorProfile && myBusinessPartner.myBusinessPartner.distributorProfile.status=='ACTIVE' ? 'X' : ''}}</td>
     <td><button type="button" class="btn btn-primary btn-sm" (click)="removeMyBusinessPartner(myBusinessPartner)">Remove from partnership</button></td>
   </tr>
   </tbody>

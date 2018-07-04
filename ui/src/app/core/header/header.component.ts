@@ -30,6 +30,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.profileNameSubscriber = this.authService.getUserProfileNameObservable().subscribe(profileName => {
           this.profileName = profileName;
       } );
+
+      this.profileName = this.authService.getCurrentBusinessPartner().name;
   }
 
 
