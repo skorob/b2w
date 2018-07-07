@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {PreloadAllModules} from "@angular/router";
 import {AppComponent} from "./app.component";
-import {HomeComponent} from "./core/nonloggeduser/components/home/home.component";
+import {HomeComponent} from "./core/non-loggeduser/component/home/home.component";
 
 
 const appRoutes: Routes = [

@@ -1,10 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {ControlFeedbackComponent} from './control-feedback/control-feedback.component';
-import {ErrorHandlerService} from "./error-handler.service";
-import {TokenInterceptor} from "../app/auth/token-interceptor";
+import {ControlFeedbackComponent} from './component/control-feedback/control-feedback.component';
+import {ErrorHandlerService} from "./service/error-handler.service";
+import {TokenInterceptor} from "../app/core/non-loggeduser/auth/token-interceptor";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {DropdownDirective} from "./dropdown.directive";
+import {DropdownDirective} from "./directive/dropdown.directive";
+import {AuthService} from "./service/auth.service";
 
 @NgModule({
   declarations: [ControlFeedbackComponent, DropdownDirective],
@@ -19,7 +20,7 @@ import {DropdownDirective} from "./dropdown.directive";
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true,
-  }],
+  }, AuthService],
   bootstrap: []
 })
 export class SharedModule { }
