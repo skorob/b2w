@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoggedUserModule} from "../logged-user/logged-user.module";
 import {HomeComponent} from "./component/home/home.component";
-import {AuthModule} from "./auth/auth.module";
+import {SignupSigninModule} from "./sign-up-sign-in/signup-signin.module";
 
 @NgModule({
   imports: [
     CommonModule,
     LoggedUserModule,
-    AuthModule
+    SignupSigninModule
   ],
   declarations: [HomeComponent]
 })

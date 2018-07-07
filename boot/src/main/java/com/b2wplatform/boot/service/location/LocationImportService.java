@@ -144,9 +144,21 @@ public class LocationImportService {
         LocationType parentLocationTypeForFound = checkParentPriorityValueForFound.getLocationType();
         LocationType parentLocationTypeForToSave = checkParentPriorityValueForSaved.getLocationType();
         if(parentLocationTypeForToSave.getHierarchy() - parentLocationTypeForFound.getHierarchy() >0) {
-            log.info("Changed parent type for saved location : Found location : "+PastsUtils.toLog(checkParentPriorityValueForFound)+"; Current location to save : "+PastsUtils.toLog(checkParentPriorityValueForSaved));
-            checkParentPriorityValueForFound.setLocationType(parentLocationTypeForToSave);
+            log.info("Changed parent type for found location : Found location : "+PastsUtils.toLog(checkParentPriorityValueForFound)+"; Current location to save : "+PastsUtils.toLog(checkParentPriorityValueForSaved));
+            switchParentInfo(checkParentPriorityValueForFound,checkParentPriorityValueForSaved);
             locationRepository.save(checkParentPriorityValueForFound);
+        } else if(parentLocationTypeForFound.getHierarchy() - parentLocationTypeForToSave.getHierarchy() >0) {
+            log.info("Changed parent type for saved location : Found location : "+PastsUtils.toLog(checkParentPriorityValueForFound)+"; Current location to save : "+PastsUtils.toLog(checkParentPriorityValueForSaved));
+            switchParentInfo(checkParentPriorityValueForSaved, checkParentPriorityValueForFound);
+            locationRepository.save(checkParentPriorityValueForSaved);
         }
     }
+
+
+    private void switchParentInfo(LocationValue toSwitch, LocationValue fromParentInfo) {
+        toSwitch.setParentId(fromParentInfo.getParentId());
+        toSwitch.setParentLocationValue(fromParentInfo);
+        toSwitch.setLocationType(fromParentInfo.getLocationType());
+    }
+
 }

@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {SigninComponent} from "./component/signin/signin.component";
 import {FormsModule} from "@angular/forms";
-import {AuthRoutingModule} from "./auth-routing.module";
+import {SignupSigninRoutingModule} from "./signup-signin-routing.module";
 import {SignupComponent} from "./component/signup/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../../../shared/shared.module";
@@ -20,9 +20,9 @@ import {BusinessProfileModule} from "../../logged-user/business-profile/business
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    AuthRoutingModule,
+    SignupSigninRoutingModule,
     BusinessProfileModule
   ]
 })
 
-export class AuthModule { }
+export class SignupSigninModule { }

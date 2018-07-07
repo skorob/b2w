@@ -5,7 +5,7 @@ import {AppRoutingModule} from "../app-routing.module";
 import {SharedModule} from "../../shared/shared.module";
 import {LoggedUserModule} from "./logged-user/logged-user.module";
 import {NonLoggedUserModule} from "./non-loggeduser/non-logged-user.module";
-import {AuthModule} from "./non-loggeduser/auth/auth.module";
+import {SignupSigninModule} from "./non-loggeduser/sign-up-sign-in/signup-signin.module";
 
 
 @NgModule({

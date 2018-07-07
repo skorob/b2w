@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ControlFeedbackComponent} from './component/control-feedback/control-feedback.component';
 import {ErrorHandlerService} from "./service/error-handler.service";
-import {TokenInterceptor} from "../app/core/non-loggeduser/auth/token-interceptor";
+import {TokenInterceptor} from "../app/core/non-loggeduser/sign-up-sign-in/token-interceptor";
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DropdownDirective} from "./directive/dropdown.directive";
 import {AuthService} from "./service/auth.service";
