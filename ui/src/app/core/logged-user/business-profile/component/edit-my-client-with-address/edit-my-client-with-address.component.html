@@ -1,28 +1,53 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Client name</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Client Info</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
-            <label for="client-name" class="col-form-label">Client name:</label>
-            <input type="text" class="form-control" id="client-name">
+          <div class="form-group row">
+            <label for="client-name" class="col-form-label col-sm-2 ">Client name:</label>
+            <input type="text" class="form-control w-50" id="client-name">
           </div>
 
-          <div class="form-group">
-            <label  class="col-form-label">Message:</label>
+          <div class="form-group row" >
 
-            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
-            </div>
-         <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+            <label for="city" class="col-form-label col-sm-2">City:</label>
+            <input type="text" class="form-control w-auto" id="city" [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}">
+
+            <label for="street" class="col-form-label col-sm-1">Street:</label>
+            <input type="text" class="form-control w-40" id="street" [(ngModel)]="address.street" [ngModelOptions]="{standalone: true}">
+          </div>
+
+
+          <div class="form-group row" >
+
+            <label for="house" class="col-form-label col-sm-2">House:</label>
+            <input type="text" class="form-control w-auto" id="house" [(ngModel)]="address.house" [ngModelOptions]="{standalone: true}">
+
+            <label for="post-code" class="col-form-label col-sm-2">Post code:</label>
+            <input type="text" class="form-control w-25" id="post-code" [(ngModel)]="address.postCode" [ngModelOptions]="{standalone: true}">
+          </div>
+
+
+          <div class="form-group row">
+            <label  class="col-form-label col-sm-2">Location:</label>
+            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control w-75" #search>
+          </div>
+
+          <div class="form-group row">
+            <label for="client-name" class="col-form-label-sm col-sm-auto">Latitude={{address.latitude}}, Longitude={{address.longitude}} </label>
+          </div>
+
+
+          <agm-map [latitude]="address.latitude" [longitude]="address.longitude" [scrollwheel]="true" (mapClick)="placeMarker($event)">
+            <agm-marker [latitude]="address.latitude" [longitude]="address.longitude"></agm-marker>
           </agm-map>
--->
+
         </form>
       </div>
 

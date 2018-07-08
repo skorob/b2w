@@ -2,3 +2,6 @@ agm-map {
   height: 300px;
 }
 
+.w-40 {
+  width: 40%!important;
+}
