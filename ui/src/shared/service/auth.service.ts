@@ -95,16 +95,20 @@ export class AuthService {
 
 
   notifyObservable() {
+    let userName = this.defineUserName();
+    this.userProfileNameObservable.next(userName);
+  }
+
+  public defineUserName() {
     let userName = null;
-    if(this.isAuthenticated()) {
-      userName=this.getAppUser().login;
+    if (this.isAuthenticated()) {
+      userName = this.getAppUser().login;
       let currentBusinessPartner = this.getCurrentBusinessPartner();
-      if(currentBusinessPartner) {
-        userName=userName +"/"+currentBusinessPartner.name
+      if (currentBusinessPartner) {
+        userName = userName + "/" + currentBusinessPartner.name
       }
     }
-
-    this.userProfileNameObservable.next(userName);
+    return userName;
   }
 
   getUserProfileNameObservable() : Subject<string> {

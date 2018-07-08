@@ -1,0 +1,26 @@
+<div class="row w-100">
+  <div class="col-1">{{deliveryItem.id}}</div>
+  <div class=" col-2 small input-group-sm">
+
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+             value="{{deliveryItem.clientName}}">
+  </div>
+  <div class="col-3 small">{{deliveryItem.deliveryAdress}}</div>
+  <div class="col-2 small">
+    <div class="input-group-sm">
+      <select class="custom-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">1/2 Pallete</option>
+        <option value="2">Pallete</option>
+        <option value="3">Small Box</option>
+        <option value="4">Big Box</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-2 small input-group-sm">
+    <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+           value="{{deliveryItem.weight}}">
+  </div>
+
+  <div class="col-1"><span class="badge {{defineByStatus()}}">{{deliveryItem.deliveryStatus}}</span></div>
+</div>

@@ -1,17 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/home">Home</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand"  href="/home">Home</a>
+  <button class="navbar-toggler" type="button" (click)="toggleCollapsed()" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarNav"  [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
       <ng-template [ngIf]="isAuthenticated()">
       <li class="nav-item dropdown" routerLinkActive="active" role="group" appDropdown>
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -20,9 +14,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/edit-business-profile">My business profile...</a>
           <a class="dropdown-item" routerLink="/edit-my-business-partners">My business partners...</a>
-          <a class="dropdown-item">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item">Something else here</a>
         </div>
       </li>
 
@@ -59,3 +50,5 @@
     </ul>
   </div>
 </nav>
+
+

@@ -1,7 +1,10 @@
 import {Directive, HostListener, HostBinding, ElementRef} from "@angular/core";
 
 @Directive({
-  selector: '[appDropdown]'
+  selector: '[appDropdown]',
+  host: {
+    '(document:click)': 'handleClick($event)',
+  }
 })
 export class DropdownDirective {
 
@@ -22,6 +25,17 @@ export class DropdownDirective {
     } else {
       submenu.classList.remove("show")
     }
-    console.log(submenu);
+
+  }
+
+
+  handleClick(event: Event) {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
+      setTimeout(() => {
+        let submenu = this.elRef.nativeElement.querySelector('.dropdown-menu')
+        submenu.classList.remove("show")
+      }, 50);
+    }
   }
 }

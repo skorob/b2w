@@ -21,17 +21,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   profileNameSubscriber:Subscription;
 
+  collapsed = true;
 
   ngOnInit(): void {
       this.profileNameSubscriber = this.authService.getUserProfileNameObservable().subscribe(profileName => {
           this.profileName = profileName;
       } );
-    let currentBusinessPartner = this.authService.getCurrentBusinessPartner();
-    if(currentBusinessPartner) {
-      this.profileName = currentBusinessPartner.name;
-    } else {
-      this.profileName = "";
-    }
+    this.profileName = this.authService.defineUserName();
   }
 
 
@@ -50,6 +46,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
 
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
 
 
 
