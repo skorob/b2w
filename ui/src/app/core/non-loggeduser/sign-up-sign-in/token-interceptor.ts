@@ -16,12 +16,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    request = request.clone({
-      setHeaders: {
-        "Auth-Token": `${this.auth.getToken()}`
-      }
-    });
+    if(!request.url.includes("googleapis")) {
 
+      request = request.clone({
+        setHeaders: {
+          "Auth-Token": `${this.auth.getToken()}`
+        }
+      });
+    }
     return next.handle(request);
   }
 }

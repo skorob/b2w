@@ -4,6 +4,8 @@ import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
 import {Address} from "../../../../../model/address.class";
 import {Utils} from "../../../../../utils/utils.class";
+import {GEOService} from "../../../../../../shared/service/geo.service";
+
 
 @Component({
   selector: 'edit-my-client-with-adress',
@@ -15,16 +17,15 @@ export class EditMyClientWithAddressComponent implements OnInit {
 
   address: Address;
 
-
   public searchControl: FormControl;
-
 
   @ViewChild('search')
   public searchElement: ElementRef;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private geoService:GEOService
   ) {
     this.address = new Address();
     this.address.longitude =24.114619400000038;
@@ -45,11 +46,12 @@ export class EditMyClientWithAddressComponent implements OnInit {
             }
             this.address.longitude = place.geometry.location.lng();
             this.address.latitude = place.geometry.location.lat();
-            this.address.postCode = Utils.extractValueFrom(place,"postal_code");
-            this.address.house = Utils.extractValueFrom(place,"street_number");
-            this.address.city=Utils.extractValueFrom(place,"locality");
-            this.address.street = Utils.extractValueFrom(place,"route");
-            this.address.country= Utils.extractValueFrom(place,"country");
+            this.address.postCode = Utils.extractValueFrom(place, Utils.GEO_POST_CODE);
+            this.address.house = Utils.extractValueFrom(place, Utils.GEO_HOUSE);
+            this.address.city=Utils.extractValueFrom(place, Utils.GEO_CITY);
+            this.address.street = Utils.extractValueFrom(place, Utils.GEO_STREET);
+            this.address.country= Utils.extractValueFrom(place, Utils.GEO_COUNTRY);
+            this.address.fullAddress = this.searchElement.nativeElement.value;
             console.log(place);
             console.log(this.address.longitude, this.address.latitude);
           });
@@ -64,7 +66,20 @@ export class EditMyClientWithAddressComponent implements OnInit {
     console.log($event)
     this.address.latitude = $event.coords.lat;
     this.address.longitude = $event.coords.lng;
+    this.geoService.readGEOInfoByLangLat(this.address.latitude,this.address.longitude).then(
+      ((locationInfo:any)=>{
+          Utils.fillAddressWithReceivedValues(this.address, locationInfo);
+          this.searchElement.nativeElement.value = this.address.fullAddress;
+      })
+
+    );
+
   }
 
+
+
+  save() {
+
+  }
 
 }

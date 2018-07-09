@@ -1,9 +1,7 @@
 package com.b2wplatform.boot.service.localbusinesspartner;
 
 
-import com.b2wplatform.model.partner.MyBusinessPartner;
 import com.b2wplatform.model.partner.local.LocalBusinessPartner;
-import com.b2wplatform.model.profile.BusinessProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

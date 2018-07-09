@@ -6,6 +6,7 @@ import {TokenInterceptor} from "../app/core/non-loggeduser/sign-up-sign-in/token
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {DropdownDirective} from "./directive/dropdown.directive";
 import {AuthService} from "./service/auth.service";
+import {GEOService} from "./service/geo.service";
 
 @NgModule({
   declarations: [ControlFeedbackComponent, DropdownDirective],
@@ -20,7 +21,9 @@ import {AuthService} from "./service/auth.service";
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true,
-  }, AuthService],
+  },
+  AuthService,
+  GEOService],
   bootstrap: []
 })
 export class SharedModule { }

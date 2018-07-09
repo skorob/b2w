@@ -10,6 +10,7 @@ import {SharedModule} from "../../../../shared/shared.module";
 import { EditMyClientsComponent } from './component/edit-my-clients/edit-my-clients.component';
 import { EditMyClientWithAddressComponent } from './component/edit-my-client-with-address/edit-my-client-with-address.component';
 import {AgmCoreModule} from "@agm/core";
+import {GEOService} from "../../../../shared/service/geo.service";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {AgmCoreModule} from "@agm/core";
     BusinessProfileRoutingModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDNBikVW8Hx7-ntW3HI2iHYoKBjuXodkZs',
+      apiKey: GEOService.GEO_API_KEY,
       libraries: ["places"]
     })
   ],

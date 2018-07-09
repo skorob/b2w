@@ -1,9 +1,7 @@
 
-import {Router} from "@angular/router";
 import {Injectable} from "@angular/core";
-import {HttpClientModule, HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Observable, Subject} from "rxjs/index";
-import {getToken} from "@angular/compiler/src/css_parser/css_lexer";
+import {HttpClient, HttpResponse} from "@angular/common/http";
+import {Subject} from "rxjs/index";
 import {ApplicationUser} from "../../app/model/application-user.class";
 import {BusinessPartner} from "../../app/model/business-partner.class";
 
@@ -12,7 +10,7 @@ import {BusinessPartner} from "../../app/model/business-partner.class";
 export class AuthService {
 
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private http: HttpClient) {
 
   }
 

@@ -14,8 +14,8 @@ public class FixedAddress implements Serializable {
     private String city;
     @Column(name = "street")
     private String street;
-    @Column(name = "building")
-    private String building;
+    @Column(name = "house")
+    private String house;
     @Column(name = "description")
     private String description;
     @Column(name = "longitude")
@@ -51,12 +51,12 @@ public class FixedAddress implements Serializable {
         this.street = street;
     }
 
-    public String getBuilding() {
-        return building;
+    public String getHouse() {
+        return house;
     }
 
-    public void setBuilding(String building) {
-        this.building = building;
+    public void setHouse(String house) {
+        this.house = house;
     }
 
     public String getDescription() {
