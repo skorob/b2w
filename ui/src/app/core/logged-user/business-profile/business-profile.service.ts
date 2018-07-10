@@ -9,10 +9,12 @@ import {BusinessPartner} from "../../../model/business-partner.class";
 import {AuthService} from "../../../../shared/service/auth.service";
 import {ApplicationUser} from "../../../model/application-user.class";
 import {MyBusinessPartner} from "../../../model/my-business-partner.class";
+import {Client} from "../../../model/client.class";
+import {ClientLocation} from "../../../model/client-location.class";
 
 
 @Injectable()
-export class BusinessPartnerProfileService {
+export class BusinessProfileService {
 
 
   constructor( private http: HttpClient, private authService:AuthService) {
@@ -56,8 +58,19 @@ export class BusinessPartnerProfileService {
       myBusinessPartner : myBusinessPartner.myBusinessPartner
     }, { observe: 'response' }).toPromise().
     then((data:HttpResponse<any>) => {
-
       console.log("Remove ny business partner");
     });
+  }
+
+  saveClientWithLocation(client:Client, clientLocation:ClientLocation) {
+    return this.http.post('/api/client/save', {
+      businessPartnerId : this.authService.getCurrentBusinessPartner().id,
+      client : client,
+      clientLocation : clientLocation
+    }, { observe: 'response' }).toPromise().
+    then((data:HttpResponse<any>) => {
+      console.log("Remove ny business partner");
+    });
+
   }
 }

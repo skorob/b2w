@@ -1,8 +1,9 @@
-import {Address} from "./address.class";
+import {ClientLocation} from "./client-location.class";
 
 export class Client {
 
-  addresses:Address[]=[];
+  name:string;
+  addresses:ClientLocation[]=[];
 
 
 }

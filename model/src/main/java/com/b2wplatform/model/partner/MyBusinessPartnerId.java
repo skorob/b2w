@@ -7,14 +7,14 @@ import java.io.Serializable;
 @Embeddable
 public class MyBusinessPartnerId implements Serializable {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     private BusinessPartner businessPartner;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_my_business_partner_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_my_business_partner_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     private BusinessPartner myBusinessPartner;
 

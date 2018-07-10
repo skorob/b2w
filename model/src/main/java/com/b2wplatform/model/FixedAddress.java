@@ -3,10 +3,11 @@ package com.b2wplatform.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-@Embeddable
-public class FixedAddress implements Serializable {
+@MappedSuperclass
+public class FixedAddress extends PlatformEntity {
 
     @Column(name = "country")
     private String country;
@@ -16,16 +17,12 @@ public class FixedAddress implements Serializable {
     private String street;
     @Column(name = "house")
     private String house;
-    @Column(name = "description")
-    private String description;
     @Column(name = "longitude")
     private Double longitude;
     @Column(name = "latitude")
     private Double latitude;
     @Column(name = "fullAddressInString")
     private String fullAddressInString;
-    @Column(name = "externalId")
-    private Long externalId;
 
     public String getCountry() {
         return country;
@@ -59,14 +56,6 @@ public class FixedAddress implements Serializable {
         this.house = house;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getLongitude() {
         return longitude;
     }
@@ -91,11 +80,4 @@ public class FixedAddress implements Serializable {
         this.fullAddressInString = fullAddressInString;
     }
 
-    public Long getExternalId() {
-        return externalId;
-    }
-
-    public void setExternalId(Long externalId) {
-        this.externalId = externalId;
-    }
 }

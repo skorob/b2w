@@ -1,7 +1,7 @@
 package com.b2wplatform.model.partner;
 
 
-import enums.MyBusinessProfileRelation;
+import enums.MyBusinessProfileRelationStatus;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,19 +15,19 @@ public class MyBusinessPartner  implements Serializable {
     @EmbeddedId
     private MyBusinessPartnerId myBusinessPartnerId = new MyBusinessPartnerId();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     private BusinessPartner businessPartner;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_my_business_partner_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_my_business_partner_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     private BusinessPartner myBusinessPartner;
 
     @Column(name="relation_status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private MyBusinessProfileRelation relationStatus;
+    private MyBusinessProfileRelationStatus relationStatus;
 
 
     public BusinessPartner getBusinessPartner() {
@@ -48,11 +48,11 @@ public class MyBusinessPartner  implements Serializable {
         this.myBusinessPartner = myBusinessPartner;
     }
 
-    public MyBusinessProfileRelation getRelationStatus() {
+    public MyBusinessProfileRelationStatus getRelationStatus() {
         return relationStatus;
     }
 
-    public void setRelationStatus(MyBusinessProfileRelation relationStatus) {
+    public void setRelationStatus(MyBusinessProfileRelationStatus relationStatus) {
         this.relationStatus = relationStatus;
     }
 }

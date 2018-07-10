@@ -1,4 +1,4 @@
-export class Address {
+export class ClientLocation {
 
   id:number;
   postCode:string;

@@ -4,6 +4,7 @@ import com.b2wplatform.model.client.Client;
 import com.b2wplatform.model.client.ClientLocation;
 
 public class ClientLocationWrapper {
+    public Long businessPartnerId;
     public Client client;
     public ClientLocation clientLocation;
 

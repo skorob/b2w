@@ -11,7 +11,7 @@ import com.b2wplatform.model.partner.AppUserBusinessPartner;
 import com.b2wplatform.model.partner.BusinessPartner;
 import com.b2wplatform.model.partner.MyBusinessPartner;
 import enums.BusinessProfileType;
-import enums.MyBusinessProfileRelation;
+import enums.MyBusinessProfileRelationStatus;
 import enums.UserRole;
 import io.jsonwebtoken.lang.Collections;
 import org.apache.commons.lang3.ArrayUtils;
@@ -64,7 +64,7 @@ public class BusinessPartnerServiceImpl implements BusinessPartnerService {
 
     @Override
     public void assignMyBusinessPartner(MyBusinessPartner myBusinessPartner) {
-        myBusinessPartner.setRelationStatus(MyBusinessProfileRelation.NORMAL);
+        myBusinessPartner.setRelationStatus(MyBusinessProfileRelationStatus.NORMAL);
         this.myBusinessPartnerRepository.save(myBusinessPartner);
     }
 

@@ -7,7 +7,7 @@ import com.b2wplatform.model.partner.BusinessPartner;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "B2W_LOCAL_BUSINESS_PARTNER")
+@Table(name = "B2W_LOCAL_BUSINESS_PARTNER_TEMP")
 public class LocalBusinessPartner extends PlatformEntity {
 
     @Column(name = "name", nullable = false, length = 50)

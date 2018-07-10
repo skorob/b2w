@@ -1,5 +1,6 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {} from '@types/googlemaps';
+import {BusinessProfileService} from "../../business-profile.service";
 @Component({
   selector: 'edit-my-clients',
   templateUrl: './edit-my-clients.component.html',
@@ -8,8 +9,12 @@ import {} from '@types/googlemaps';
 export class EditMyClientsComponent implements OnInit {
 
 
-  constructor() {}
+  constructor(private businessProfileService:BusinessProfileService) {}
 
   ngOnInit() {
+
   }
+
+
+
 }

@@ -9,24 +9,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "B2W_CLIENT_LOCATION")
-public class ClientLocation extends PlatformEntity {
+public class ClientLocation extends FixedAddress {
 
 
-    @Embedded
-    private FixedAddress fixedAddress;
-
-
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Client.class )
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Client.class, optional = false)
+    @JoinColumn(name="fk_client_id", referencedColumnName = "id", nullable = false)
     private Client client;
 
-
-    public FixedAddress getFixedAddress() {
-        return fixedAddress;
-    }
-
-    public void setFixedAddress(FixedAddress fixedAddress) {
-        this.fixedAddress = fixedAddress;
-    }
 
     public Client getClient() {
         return client;

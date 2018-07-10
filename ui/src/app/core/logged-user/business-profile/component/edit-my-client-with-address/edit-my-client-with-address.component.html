@@ -11,26 +11,25 @@
         <form>
           <div class="form-group row">
             <label for="client-name" class="col-form-label col-sm-2 ">Client name:</label>
-            <input type="text" class="form-control w-50" id="client-name">
+            <input type="text" class="form-control w-50" id="client-name" [(ngModel)]="client.name" [ngModelOptions]="{standalone: true}">
           </div>
 
           <div class="form-group row" >
-
             <label for="city" class="col-form-label col-sm-2">City:</label>
-            <input type="text" class="form-control w-auto" id="city" [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control w-auto" id="city" [(ngModel)]="clientLocation.city" [ngModelOptions]="{standalone: true}">
 
             <label for="street" class="col-form-label col-sm-1">Street:</label>
-            <input type="text" class="form-control w-40" id="street" [(ngModel)]="address.street" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control w-40" id="street" [(ngModel)]="clientLocation.street" [ngModelOptions]="{standalone: true}">
           </div>
 
 
           <div class="form-group row" >
 
             <label for="house" class="col-form-label col-sm-2">House:</label>
-            <input type="text" class="form-control w-auto" id="house" [(ngModel)]="address.house" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control w-auto" id="house" [(ngModel)]="clientLocation.house" [ngModelOptions]="{standalone: true}">
 
             <label for="post-code" class="col-form-label col-sm-2">Post code:</label>
-            <input type="text" class="form-control w-25" id="post-code" [(ngModel)]="address.postCode" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control w-25" id="post-code" [(ngModel)]="clientLocation.postCode" [ngModelOptions]="{standalone: true}">
           </div>
 
 
@@ -40,12 +39,13 @@
           </div>
 
           <div class="form-group row">
-            <label for="client-name" class="col-form-label-sm col-sm-auto">Latitude={{address.latitude}}, Longitude={{address.longitude}} </label>
+            <label for="client-name" class="col-form-label-sm col-sm-auto">Latitude={{clientLocation.latitude}},
+              Longitude={{clientLocation.longitude}} </label>
           </div>
 
 
-          <agm-map [latitude]="address.latitude" [longitude]="address.longitude" [scrollwheel]="true" (mapClick)="placeMarker($event)">
-            <agm-marker [latitude]="address.latitude" [longitude]="address.longitude"></agm-marker>
+          <agm-map [latitude]="clientLocation.latitude" [longitude]="clientLocation.longitude" [scrollwheel]="true" (mapClick)="placeMarker($event)">
+            <agm-marker [latitude]="clientLocation.latitude" [longitude]="clientLocation.longitude"></agm-marker>
           </agm-map>
 
         </form>

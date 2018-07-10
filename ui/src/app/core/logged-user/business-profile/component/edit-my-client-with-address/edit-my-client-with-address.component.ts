@@ -2,9 +2,11 @@ import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
-import {Address} from "../../../../../model/address.class";
+import {ClientLocation} from "../../../../../model/client-location.class";
 import {Utils} from "../../../../../utils/utils.class";
 import {GEOService} from "../../../../../../shared/service/geo.service";
+import {BusinessProfileService} from "../../business-profile.service";
+import {Client} from "../../../../../model/client.class";
 
 
 @Component({
@@ -15,7 +17,8 @@ import {GEOService} from "../../../../../../shared/service/geo.service";
 export class EditMyClientWithAddressComponent implements OnInit {
 
 
-  address: Address;
+  client: Client;
+  clientLocation: ClientLocation;
 
   public searchControl: FormControl;
 
@@ -25,11 +28,14 @@ export class EditMyClientWithAddressComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private geoService:GEOService
+    private geoService:GEOService,
+    private businessProfileService:BusinessProfileService
   ) {
-    this.address = new Address();
-    this.address.longitude =24.114619400000038;
-    this.address.latitude=56.9436762;
+    this.clientLocation = new ClientLocation();
+    this.clientLocation.longitude =24.114619400000038;
+    this.clientLocation.latitude=56.9436762;
+
+    this.client = new Client();
   }
 
   ngOnInit() {
@@ -44,16 +50,15 @@ export class EditMyClientWithAddressComponent implements OnInit {
             if(place.geometry === undefined || place.geometry === null ){
               return;
             }
-            this.address.longitude = place.geometry.location.lng();
-            this.address.latitude = place.geometry.location.lat();
-            this.address.postCode = Utils.extractValueFrom(place, Utils.GEO_POST_CODE);
-            this.address.house = Utils.extractValueFrom(place, Utils.GEO_HOUSE);
-            this.address.city=Utils.extractValueFrom(place, Utils.GEO_CITY);
-            this.address.street = Utils.extractValueFrom(place, Utils.GEO_STREET);
-            this.address.country= Utils.extractValueFrom(place, Utils.GEO_COUNTRY);
-            this.address.fullAddress = this.searchElement.nativeElement.value;
-            console.log(place);
-            console.log(this.address.longitude, this.address.latitude);
+            this.clientLocation.longitude = place.geometry.location.lng();
+            this.clientLocation.latitude = place.geometry.location.lat();
+            this.clientLocation.postCode = Utils.extractValueFrom(place, Utils.GEO_POST_CODE);
+            this.clientLocation.house = Utils.extractValueFrom(place, Utils.GEO_HOUSE);
+            this.clientLocation.city=Utils.extractValueFrom(place, Utils.GEO_CITY);
+            this.clientLocation.street = Utils.extractValueFrom(place, Utils.GEO_STREET);
+            this.clientLocation.country= Utils.extractValueFrom(place, Utils.GEO_COUNTRY);
+            this.clientLocation.fullAddress = this.searchElement.nativeElement.value;
+            console.log(this.clientLocation.longitude, this.clientLocation.latitude);
           });
         });
       }
@@ -64,12 +69,12 @@ export class EditMyClientWithAddressComponent implements OnInit {
 
   placeMarker($event) {
     console.log($event)
-    this.address.latitude = $event.coords.lat;
-    this.address.longitude = $event.coords.lng;
-    this.geoService.readGEOInfoByLangLat(this.address.latitude,this.address.longitude).then(
+    this.clientLocation.latitude = $event.coords.lat;
+    this.clientLocation.longitude = $event.coords.lng;
+    this.geoService.readGEOInfoByLangLat(this.clientLocation.latitude,this.clientLocation.longitude).then(
       ((locationInfo:any)=>{
-          Utils.fillAddressWithReceivedValues(this.address, locationInfo);
-          this.searchElement.nativeElement.value = this.address.fullAddress;
+          Utils.fillAddressWithReceivedValues(this.clientLocation, locationInfo);
+          this.searchElement.nativeElement.value = this.clientLocation.fullAddress;
       })
 
     );
@@ -79,7 +84,7 @@ export class EditMyClientWithAddressComponent implements OnInit {
 
 
   save() {
-
+    this.businessProfileService.saveClientWithLocation(this.client, this.clientLocation);
   }
 
 }

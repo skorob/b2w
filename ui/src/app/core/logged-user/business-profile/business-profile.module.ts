@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 
 import {EditMyBusinessPartnersComponent} from "./component/edit-my-business-partners/edit-my-business-partners.component";
 import {BusinessProfileRoutingModule} from "./business-profile-routing.module";
-import {BusinessPartnerProfileService} from "./business-profile.service";
+import {BusinessProfileService} from "./business-profile.service";
 import {CommonModule} from "@angular/common";
 import {EditBusinessProfileComponent} from "./component/edit-business-profile/edit-business-profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -34,7 +34,7 @@ import {GEOService} from "../../../../shared/service/geo.service";
   exports: [
     EditBusinessProfileComponent
   ],
-  providers: [BusinessPartnerProfileService]
+  providers: [BusinessProfileService]
 })
 
 

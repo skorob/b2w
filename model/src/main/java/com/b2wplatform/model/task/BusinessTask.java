@@ -10,12 +10,12 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class BusinessTask extends Task {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_created_by_bp_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_created_by_bp_id",referencedColumnName = "id", nullable = false)
     private BusinessPartner taskCreatedBy;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_assigned_to_bp_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_assigned_to_bp_id",referencedColumnName = "id", nullable = false)
     private BusinessPartner taskAssignedToBusinessPartner;
 
 }

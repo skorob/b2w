@@ -17,16 +17,16 @@ public class AppUserBusinessPartner implements Serializable{
     @EmbeddedId
     private AppUserBusinessPartnerId appUserBusinessPartnerId = new AppUserBusinessPartnerId();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_business_partner_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     private BusinessPartner businessPartner;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fk_app_user_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name="fk_app_user_id",referencedColumnName = "id", nullable = false)
     @MapsId("id")
     @JsonBackReference
     private AppUser appUser;

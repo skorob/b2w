@@ -1,4 +1,4 @@
-import {Address} from "../model/address.class";
+import {ClientLocation} from "../model/client-location.class";
 
 
 export class Utils {
@@ -31,13 +31,14 @@ export class Utils {
   }
 
 
-  static fillAddressWithReceivedValues(address: Address, locationInfo: any) {
+  static fillAddressWithReceivedValues(address: ClientLocation, locationInfo: any) {
     address.street = this.extractValueFromLocationInfo(locationInfo, this.GEO_STREET);
     address.country = this.extractValueFromLocationInfo(locationInfo, this.GEO_COUNTRY);
     address.postCode = this.extractValueFromLocationInfo(locationInfo, this.GEO_POST_CODE);
-    address.house = this.extractValueFromLocationInfo(locationInfo, this.GEO_HOUSE)
-    address.city = this.extractValueFromLocationInfo(locationInfo, this.GEO_CITY)
-    address.fullAddress = ";ddd";
+    address.house = this.extractValueFromLocationInfo(locationInfo, this.GEO_HOUSE);
+    address.city = this.extractValueFromLocationInfo(locationInfo, this.GEO_CITY);
+
+    address.fullAddress =  [address.postCode, address.house, address.street, address.city, address.country].filter(Boolean).join(", ");
   }
 
 

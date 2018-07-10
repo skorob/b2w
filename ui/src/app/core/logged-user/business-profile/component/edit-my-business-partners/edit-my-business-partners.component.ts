@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BusinessPartnerProfileService} from "../../business-profile.service";
+import {BusinessProfileService} from "../../business-profile.service";
 import {BusinessPartner} from "../../../../../model/business-partner.class";
 import {AuthService} from "../../../../../../shared/service/auth.service";
 
@@ -12,7 +12,7 @@ import {MyBusinessPartner} from "../../../../../model/my-business-partner.class"
 })
 export class EditMyBusinessPartnersComponent implements OnInit {
 
-  constructor(private businessPartnerProfileService: BusinessPartnerProfileService, private authService: AuthService) { }
+  constructor(private businessPartnerProfileService: BusinessProfileService, private authService: AuthService) { }
 
   businessPartners: BusinessPartner[];
   myBusinessPartners: MyBusinessPartner[];
