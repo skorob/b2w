@@ -3,9 +3,14 @@ package com.b2wplatform.boot.rest;
 
 import com.b2wplatform.boot.rest.wrapper.ClientLocationWrapper;
 import com.b2wplatform.boot.service.client.ClientService;
+import com.b2wplatform.model.client.Client;
+import com.b2wplatform.model.client.ClientLocation;
 import com.b2wplatform.model.partner.BusinessPartner;
+import com.b2wplatform.model.partner.local.LocalBusinessPartner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 
@@ -16,14 +21,18 @@ public class ClientRestService {
     private ClientService clientService;
 
     @PostMapping("/save")
-    public void save(@RequestBody ClientLocationWrapper clientLocationWrapper) {
+    public ClientLocation save(@RequestBody ClientLocationWrapper clientLocationWrapper) {
         BusinessPartner businessPartner = new BusinessPartner();
         businessPartner.setId(clientLocationWrapper.businessPartnerId);
 
         clientLocationWrapper.client.setBusinessPartner(businessPartner);
-        clientService.saveClientWithLocation(clientLocationWrapper.client, clientLocationWrapper.clientLocation);
+        return clientService.saveClientWithLocation(clientLocationWrapper.client, clientLocationWrapper.clientLocation);
     }
 
 
+    @GetMapping("/find-all-for-business-partner/{id}")
+    public List<Client> findBusinessPartnerClientsByBusinessProfile(@PathVariable("id") Long businessPartnerId) {
+        return this.clientService.findBusinessPartnerClientsByBusinessProfile(businessPartnerId);
+    }
 
 }

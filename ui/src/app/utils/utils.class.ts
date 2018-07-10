@@ -38,7 +38,7 @@ export class Utils {
     address.house = this.extractValueFromLocationInfo(locationInfo, this.GEO_HOUSE);
     address.city = this.extractValueFromLocationInfo(locationInfo, this.GEO_CITY);
 
-    address.fullAddress =  [address.postCode, address.house, address.street, address.city, address.country].filter(Boolean).join(", ");
+    address.fullAddress =  [address.postCode, address.street, address.house, address.city, address.country].filter(Boolean).join(", ");
   }
 
 

@@ -2,9 +2,7 @@ package com.b2wplatform.model;
 
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.MappedSuperclass;
-import java.io.Serializable;
 
 @MappedSuperclass
 public class FixedAddress extends PlatformEntity {
@@ -21,8 +19,8 @@ public class FixedAddress extends PlatformEntity {
     private Double longitude;
     @Column(name = "latitude")
     private Double latitude;
-    @Column(name = "fullAddressInString")
-    private String fullAddressInString;
+    @Column(name = "fullAddress")
+    private String fullAddress;
 
     public String getCountry() {
         return country;
@@ -72,12 +70,12 @@ public class FixedAddress extends PlatformEntity {
         this.latitude = latitude;
     }
 
-    public String getFullAddressInString() {
-        return fullAddressInString;
+    public String getFullAddress() {
+        return fullAddress;
     }
 
-    public void setFullAddressInString(String fullAddressInString) {
-        this.fullAddressInString = fullAddressInString;
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
 }

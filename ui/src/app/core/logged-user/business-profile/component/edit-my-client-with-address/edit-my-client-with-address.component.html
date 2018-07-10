@@ -1,4 +1,4 @@
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" #exampleModal id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -13,6 +13,12 @@
             <label for="client-name" class="col-form-label col-sm-2 ">Client name:</label>
             <input type="text" class="form-control w-50" id="client-name" [(ngModel)]="client.name" [ngModelOptions]="{standalone: true}">
           </div>
+
+          <div class="form-group row">
+            <label  class="col-form-label col-sm-2">Location:</label>
+            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control w-75" #search>
+          </div>
+
 
           <div class="form-group row" >
             <label for="city" class="col-form-label col-sm-2">City:</label>
@@ -34,11 +40,6 @@
 
 
           <div class="form-group row">
-            <label  class="col-form-label col-sm-2">Location:</label>
-            <input type="text" placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control w-75" #search>
-          </div>
-
-          <div class="form-group row">
             <label for="client-name" class="col-form-label-sm col-sm-auto">Latitude={{clientLocation.latitude}},
               Longitude={{clientLocation.longitude}} </label>
           </div>
@@ -54,7 +55,7 @@
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeBtn">Close</button>
         <button type="button" class="btn btn-primary" (click)="save()">Save</button>
       </div>
     </div>

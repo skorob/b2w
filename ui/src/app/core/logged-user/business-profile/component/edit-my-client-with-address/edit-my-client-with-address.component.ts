@@ -1,4 +1,4 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
@@ -7,7 +7,8 @@ import {Utils} from "../../../../../utils/utils.class";
 import {GEOService} from "../../../../../../shared/service/geo.service";
 import {BusinessProfileService} from "../../business-profile.service";
 import {Client} from "../../../../../model/client.class";
-
+import * as $ from 'jquery';
+import {showRuleCrashWarning} from "tslint/lib/error";
 
 @Component({
   selector: 'edit-my-client-with-adress',
@@ -20,10 +21,18 @@ export class EditMyClientWithAddressComponent implements OnInit {
   client: Client;
   clientLocation: ClientLocation;
 
+
+
+  @Output()
+  clientCreated = new EventEmitter();
+
+
   public searchControl: FormControl;
 
   @ViewChild('search')
   public searchElement: ElementRef;
+
+  @ViewChild('exampleModal') modalDialog;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -84,7 +93,17 @@ export class EditMyClientWithAddressComponent implements OnInit {
 
 
   save() {
-    this.businessProfileService.saveClientWithLocation(this.client, this.clientLocation);
+
+
+    this.businessProfileService.saveClientWithLocation(this.client, this.clientLocation).then(
+      (any =>{
+        this.modalDialog.nativeElement.className = 'modal hide';
+        this.clientCreated.emit("");
+        $('#closeBtn').trigger("click");
+        this.clientLocation = new ClientLocation();
+      })
+    );
+
   }
 
 }

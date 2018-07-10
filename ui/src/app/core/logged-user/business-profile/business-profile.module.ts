@@ -11,6 +11,7 @@ import { EditMyClientsComponent } from './component/edit-my-clients/edit-my-clie
 import { EditMyClientWithAddressComponent } from './component/edit-my-client-with-address/edit-my-client-with-address.component';
 import {AgmCoreModule} from "@agm/core";
 import {GEOService} from "../../../../shared/service/geo.service";
+import { EditMyClientListItemComponent } from './component/edit-my-client-list-item/edit-my-client-list-item.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {GEOService} from "../../../../shared/service/geo.service";
       EditMyBusinessPartnersComponent,
       EditBusinessProfileComponent,
       EditMyClientsComponent,
-      EditMyClientWithAddressComponent
+      EditMyClientWithAddressComponent,
+      EditMyClientListItemComponent
   ],
   imports: [
     FormsModule,

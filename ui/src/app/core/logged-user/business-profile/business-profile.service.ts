@@ -69,8 +69,15 @@ export class BusinessProfileService {
       clientLocation : clientLocation
     }, { observe: 'response' }).toPromise().
     then((data:HttpResponse<any>) => {
-      console.log("Remove ny business partner");
+      console.log("client saved");
     });
+  }
 
+
+  findMyClients():Promise<Client[]> {
+
+    const  currentBusinessPartner:BusinessPartner = this.authService.getCurrentBusinessPartner();
+
+    return this.http.get<Client[]>('/api/client/find-all-for-business-partner/'+currentBusinessPartner.id).toPromise<Client[]>();
   }
 }

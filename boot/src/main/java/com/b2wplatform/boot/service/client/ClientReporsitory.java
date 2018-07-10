@@ -12,6 +12,6 @@ import java.util.List;
 public interface ClientReporsitory extends JpaRepository<Client, Long> {
 
     @Query("SELECT cl FROM Client cl WHERE cl.businessPartner.id = :businessPartnerId")
-    List<LocalBusinessPartner> findBusinessPartnersClientsByBusinessProfile(@Param("businessPartnerId") Long businessPartnerId);
+    List<Client> findBusinessPartnerClientsByBusinessProfile(@Param("businessPartnerId") Long businessPartnerId);
 
 }
