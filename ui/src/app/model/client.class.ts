@@ -2,8 +2,9 @@ import {ClientLocation} from "./client-location.class";
 
 export class Client {
 
+  id:number;
   name:string;
-  addresses:ClientLocation[]=[];
+  clientLocations:ClientLocation[];
 
 
 }

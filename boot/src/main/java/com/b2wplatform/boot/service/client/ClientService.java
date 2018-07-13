@@ -8,6 +8,7 @@ public interface ClientService {
 
     ClientLocation saveClientWithLocation(Client client, ClientLocation clientLocation);
 
-    List<Client> findBusinessPartnerClientsByBusinessProfile(Long businessPartnerId);
+    List<Client> findBusinessPartnerClientsByBusinessProfile(Long businessPartnerId, String searchName);
 
+    void removeClientById(Long clientId);
 }

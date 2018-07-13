@@ -11,6 +11,8 @@ export class EditMyClientsComponent implements OnInit {
 
 
   clients:Client[];
+  searchName:string;
+
 
   constructor(private businessProfileService:BusinessProfileService) {}
 
@@ -19,8 +21,8 @@ export class EditMyClientsComponent implements OnInit {
   }
 
 
-  private refreshClients() {
-    this.businessProfileService.findMyClients().then((clients: Client[]) => {
+  refreshClients() {
+    this.businessProfileService.findMyClients(this.searchName).then((clients: Client[]) => {
       this.clients = clients;
     });
   }

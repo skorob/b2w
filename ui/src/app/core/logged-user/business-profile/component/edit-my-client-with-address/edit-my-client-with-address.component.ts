@@ -39,15 +39,11 @@ export class EditMyClientWithAddressComponent implements OnInit {
     private ngZone: NgZone,
     private geoService:GEOService,
     private businessProfileService:BusinessProfileService
-  ) {
-    this.clientLocation = new ClientLocation();
-    this.clientLocation.longitude =24.114619400000038;
-    this.clientLocation.latitude=56.9436762;
-
-    this.client = new Client();
-  }
+  ) { }
 
   ngOnInit() {
+
+    this.clearData();
 
     this.mapsAPILoader.load().then(
       () => {
@@ -100,10 +96,19 @@ export class EditMyClientWithAddressComponent implements OnInit {
         this.modalDialog.nativeElement.className = 'modal hide';
         this.clientCreated.emit("");
         $('#closeBtn').trigger("click");
-        this.clientLocation = new ClientLocation();
+        this.clearData();
       })
     );
 
   }
 
+  private clearData() {
+    this.clientLocation = new ClientLocation();
+    this.searchElement.nativeElement.value = "";
+    this.client = new Client();
+
+    this.clientLocation.longitude =24.114619400000038;
+    this.clientLocation.latitude=56.9436762;
+
+  }
 }

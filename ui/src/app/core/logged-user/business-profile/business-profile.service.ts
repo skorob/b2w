@@ -74,10 +74,14 @@ export class BusinessProfileService {
   }
 
 
-  findMyClients():Promise<Client[]> {
+  findMyClients(searchName:string):Promise<Client[]> {
 
     const  currentBusinessPartner:BusinessPartner = this.authService.getCurrentBusinessPartner();
 
-    return this.http.get<Client[]>('/api/client/find-all-for-business-partner/'+currentBusinessPartner.id).toPromise<Client[]>();
+    return this.http.get<Client[]>('/api/client/find-all-for-business-partner/'+currentBusinessPartner.id+"/"+searchName).toPromise<Client[]>();
+  }
+
+  removeMyClient(clientId: number) {
+    return this.http.get<void>('/api/client/remove/'+clientId).toPromise<void>();
   }
 }

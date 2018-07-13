@@ -27,15 +27,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findBusinessPartnerClientsByBusinessProfile(Long businessPartnerId) {
-        List<Client> businessPartnerClientsByBusinessProfile = clientReporsitory.findBusinessPartnerClientsByBusinessProfile(businessPartnerId);
-        businessPartnerClientsByBusinessProfile.stream().forEach(new Consumer<Client>() {
-            @Override
-            public void accept(Client client) {
-                client.setBusinessPartner(null);
-            }
-        });
-        return businessPartnerClientsByBusinessProfile;
+    public List<Client> findBusinessPartnerClientsByBusinessProfile(Long businessPartnerId, String searchName) {
+        return clientReporsitory.findBusinessPartnerClientsByBusinessProfile(businessPartnerId, searchName);
+    }
+
+    @Override
+    public void removeClientById(Long clientId) {
+        this.clientReporsitory.deleteById(clientId);
     }
 
 

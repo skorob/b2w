@@ -30,9 +30,15 @@ public class ClientRestService {
     }
 
 
-    @GetMapping("/find-all-for-business-partner/{id}")
-    public List<Client> findBusinessPartnerClientsByBusinessProfile(@PathVariable("id") Long businessPartnerId) {
-        return this.clientService.findBusinessPartnerClientsByBusinessProfile(businessPartnerId);
+    @GetMapping("/find-all-for-business-partner/{id}/{searchString}")
+    public List<Client> findBusinessPartnerClientsByBusinessProfile(@PathVariable("id") Long businessPartnerId, @PathVariable("searchString") String searchName) {
+        return this.clientService.findBusinessPartnerClientsByBusinessProfile(businessPartnerId, searchName);
+    }
+
+
+    @GetMapping("/remove/{id}")
+    public void remove(@PathVariable("id") Long clientId) {
+        clientService.removeClientById(clientId);
     }
 
 }

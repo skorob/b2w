@@ -7,6 +7,7 @@ import com.b2wplatform.model.client.ClientLocation;
 import com.b2wplatform.model.partner.local.LocalBusinessPartner;
 import com.b2wplatform.model.profile.DistributorBusinessProfile;
 import com.b2wplatform.model.profile.LogisticBusinessProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class BusinessPartner extends PlatformEntity {
     @JoinColumn(name = "distributor_profile_id")
     private DistributorBusinessProfile distributorProfile;
 
+    @JsonIgnore
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, targetEntity = Client.class, mappedBy = "businessPartner" )
     private List<Client> clients;
 
