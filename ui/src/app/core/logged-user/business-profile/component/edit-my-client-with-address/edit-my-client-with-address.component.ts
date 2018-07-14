@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
@@ -8,7 +18,6 @@ import {GEOService} from "../../../../../../shared/service/geo.service";
 import {BusinessProfileService} from "../../business-profile.service";
 import {Client} from "../../../../../model/client.class";
 import * as $ from 'jquery';
-import {showRuleCrashWarning} from "tslint/lib/error";
 
 @Component({
   selector: 'edit-my-client-with-adress',
@@ -18,21 +27,22 @@ import {showRuleCrashWarning} from "tslint/lib/error";
 export class EditMyClientWithAddressComponent implements OnInit {
 
 
+  @Input()
   client: Client;
+  @Input()
   clientLocation: ClientLocation;
-
-
 
   @Output()
   clientCreated = new EventEmitter();
 
 
-  public searchControl: FormControl;
+  private editClientMode:boolean;
+
 
   @ViewChild('search')
   public searchElement: ElementRef;
 
-  @ViewChild('exampleModal') modalDialog;
+
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -42,9 +52,7 @@ export class EditMyClientWithAddressComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.clearData();
-
     this.mapsAPILoader.load().then(
       () => {
         let autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:["address"] });
@@ -93,12 +101,22 @@ export class EditMyClientWithAddressComponent implements OnInit {
 
     this.businessProfileService.saveClientWithLocation(this.client, this.clientLocation).then(
       (any =>{
-        this.modalDialog.nativeElement.className = 'modal hide';
         this.clientCreated.emit("");
-        $('#closeBtn').trigger("click");
         this.clearData();
+        $('#exampleModal').modal('hide');
       })
     );
+
+  }
+
+  private prepareData() {
+    console.log(this.client);
+    if(this.client.id!=null) {
+      this.editClientMode = true;
+    } else {
+      this.editClientMode = false;
+      this.clearData();
+    }
 
   }
 
@@ -111,4 +129,5 @@ export class EditMyClientWithAddressComponent implements OnInit {
     this.clientLocation.latitude=56.9436762;
 
   }
+
 }

@@ -13,22 +13,28 @@ export class EditMyClientListItemComponent implements OnInit {
   client:Client;
 
   @Output()
-  clientsRefreshed = new EventEmitter<void>();
+  clientsRefreshEvent = new EventEmitter<void>();
+
+  @Output()
+  clientLocationAddEvent = new EventEmitter<Client>();
 
   constructor(private businessProfileService:BusinessProfileService) { }
 
   ngOnInit() {
   }
 
-  onDelete() {
+  onClientDeleteClick() {
     if(confirm("Are you sure to delete client : '"+this.client.name+"' ")) {
       this.businessProfileService.removeMyClient(this.client.id).then(
         r=> {
-            this.clientsRefreshed.emit();
+            this.clientsRefreshEvent.emit();
         }
       );
     }
+  }
 
+  onClientLocationAddClick() {
+    this.clientLocationAddEvent.emit(this.client);
   }
 
 }

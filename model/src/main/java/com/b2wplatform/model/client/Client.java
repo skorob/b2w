@@ -14,7 +14,7 @@ public class Client extends PlatformEntity {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER, targetEntity = ClientLocation.class, mappedBy = "client" )
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.LAZY, targetEntity = ClientLocation.class, mappedBy = "client" )
     private List<ClientLocation> clientLocations;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

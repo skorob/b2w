@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ClientReporsitory extends JpaRepository<Client, Long> {
 
-    @Query("SELECT cl FROM Client cl left join fetch cl.clientLocations WHERE cl.businessPartner.id = :businessPartnerId and (lower(cl.name) like lower(concat('%', :searchName,'%')) or :searchName='*')")
+    @Query("SELECT cl FROM Client cl WHERE cl.businessPartner.id = :businessPartnerId and (lower(cl.name) like lower(concat('%', :searchName,'%')) or :searchName='*')")
     List<Client> findBusinessPartnerClientsByBusinessProfile(@Param("businessPartnerId") Long businessPartnerId, @Param("searchName") String searchName);
 
 }

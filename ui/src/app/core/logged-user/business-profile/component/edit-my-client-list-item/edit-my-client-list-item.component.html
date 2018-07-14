@@ -1,7 +1,8 @@
 <div class="row w-100">
   <div class="col-2 small input-group-sm">{{client.name}}</div>
   <div class="col-2 small input-group-sm">{{client.clientLocations.length}}</div>
-  <div class="col-2 small input-group-sm mt-1"><button type="button" class="btn btn-danger btn-sm" (click)="onDelete()">Remove</button></div>
+  <div class="col-1 small input-group-sm mt-1"><button type="button" class="btn btn-danger btn-sm" (click)="onClientDeleteClick()">Remove</button></div>
+  <div class="col-1 small input-group-sm mt-1"><button type="button" class="btn btn-success btn-sm" (click)="onClientLocationAddClick()">Add address</button></div>
 </div>
 
 

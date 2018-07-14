@@ -7,7 +7,7 @@ import {CommonModule} from "@angular/common";
 import {EditBusinessProfileComponent} from "./component/edit-business-profile/edit-business-profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../../../../shared/shared.module";
-import { EditMyClientsComponent } from './component/edit-my-clients/edit-my-clients.component';
+import { EditMyClientListComponent } from './component/edit-my-client-list/edit-my-client-list.component';
 import { EditMyClientWithAddressComponent } from './component/edit-my-client-with-address/edit-my-client-with-address.component';
 import {AgmCoreModule} from "@agm/core";
 import {GEOService} from "../../../../shared/service/geo.service";
@@ -18,7 +18,7 @@ import { EditMyClientListItemComponent } from './component/edit-my-client-list-i
   declarations: [
       EditMyBusinessPartnersComponent,
       EditBusinessProfileComponent,
-      EditMyClientsComponent,
+      EditMyClientListComponent,
       EditMyClientWithAddressComponent,
       EditMyClientListItemComponent
   ],
