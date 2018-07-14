@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {} from '@types/googlemaps';
 import {BusinessProfileService} from "../../service/business-profile.service";
 import {Client} from "../../../../../model/client.class";
-import 'jquery';
-import 'bootstrap';
+
+
 
 import {ClientLocation} from "../../../../../model/client-location.class";
 import {UiInteractionService} from "../../service/ui-interaction.service";

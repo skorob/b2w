@@ -1,15 +1,12 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
   Input,
   NgZone, OnDestroy,
   OnInit,
-  Output,
   ViewChild
 } from '@angular/core';
-import {FormControl} from "@angular/forms";
+
 import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
 import {ClientLocation} from "../../../../../model/client-location.class";
