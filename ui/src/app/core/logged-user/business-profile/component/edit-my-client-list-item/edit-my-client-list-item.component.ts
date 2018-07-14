@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Client} from "../../../../../model/client.class";
-import {BusinessProfileService} from "../../business-profile.service";
+import {BusinessProfileService} from "../../service/business-profile.service";
+import {UiInteractionService} from "../../service/ui-interaction.service";
 
 @Component({
   selector: 'edit-my-client-list-item',
@@ -15,11 +16,9 @@ export class EditMyClientListItemComponent implements OnInit {
   @Output()
   clientsRefreshEvent = new EventEmitter<void>();
 
-  @Output()
-  clientLocationAddEvent = new EventEmitter<Client>();
 
 
-  constructor(private businessProfileService:BusinessProfileService) { }
+  constructor(private businessProfileService:BusinessProfileService, private uiInteractionService : UiInteractionService) { }
 
   ngOnInit() {
   }
@@ -35,7 +34,19 @@ export class EditMyClientListItemComponent implements OnInit {
   }
 
   onClientLocationAddClick() {
-    this.clientLocationAddEvent.emit(this.client);
+
+    this.uiInteractionService.showEditClientLocationDialog(this.client, null, () : void=> {
+      this.clientsRefreshEvent.emit();
+    })
+  }
+
+  onRefreshClient() {
+    this.businessProfileService.findMyClientById(this.client.id).then(
+      (client=> {
+        this.client = client;
+      })
+    )
+
   }
 
 

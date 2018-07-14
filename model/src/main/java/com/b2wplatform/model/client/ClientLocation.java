@@ -1,8 +1,7 @@
 package com.b2wplatform.model.client;
 
 import com.b2wplatform.model.FixedAddress;
-import com.b2wplatform.model.PlatformEntity;
-import com.b2wplatform.model.partner.AppUserBusinessPartner;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -13,7 +12,7 @@ import java.util.List;
 public class ClientLocation extends FixedAddress {
 
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, targetEntity = Client.class, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Client.class, optional = false)
     @JoinColumn(name="fk_client_id", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private Client client;

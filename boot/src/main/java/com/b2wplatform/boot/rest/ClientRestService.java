@@ -35,6 +35,10 @@ public class ClientRestService {
         return this.clientService.findBusinessPartnerClientsByBusinessProfile(businessPartnerId, searchName);
     }
 
+    @GetMapping("/find/{id}")
+    public Client findById(@PathVariable("id") Long clientId) {
+        return this.clientService.findById(clientId);
+    }
 
     @GetMapping("/remove/{id}")
     public void remove(@PathVariable("id") Long clientId) {

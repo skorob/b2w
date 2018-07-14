@@ -36,5 +36,15 @@ public class ClientServiceImpl implements ClientService {
         this.clientReporsitory.deleteById(clientId);
     }
 
+    @Override
+    public void removeClientLocationById(Long clientLocationId) {
+        this.clientLocationReporsitory.deleteById(clientLocationId);
+    }
+
+    @Override
+    public Client findById(Long clientId) {
+        return this.clientReporsitory.findById(clientId).orElse(null);
+    }
+
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BusinessProfileService} from "../../business-profile.service";
+import {BusinessProfileService} from "../../service/business-profile.service";
 import {BusinessPartner} from "../../../../../model/business-partner.class";
 import {AuthService} from "../../../../../../shared/service/auth.service";
 

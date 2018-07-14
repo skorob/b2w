@@ -11,4 +11,8 @@ public interface ClientService {
     List<Client> findBusinessPartnerClientsByBusinessProfile(Long businessPartnerId, String searchName);
 
     void removeClientById(Long clientId);
+
+    void removeClientLocationById(Long clientLocationId);
+
+    Client findById(Long clientId);
 }

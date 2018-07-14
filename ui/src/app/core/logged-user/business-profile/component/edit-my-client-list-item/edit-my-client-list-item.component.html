@@ -8,7 +8,7 @@
           </button>
         </div>
 
-        <div class="col-1 small input-group-sm">{{client.clientLocations.length}}</div>
+        <div class="col-1 small input-group-sm"><small> {{client.clientLocations.length}}</small></div>
         <div class="col-4 small input-group-sm mt-1">
           <button type="button" class="btn btn-danger btn-sm mr-1" (click)="onClientDeleteClick()">Remove client
           </button>
@@ -21,11 +21,11 @@
     <div class="card-body">
       <div class="row w-100">
         <div class="col-2 small"><b>City</b></div>
-        <div class="col-2 small"><b>Street</b></div>
+        <div class="col-3 small"><b>Street</b></div>
         <div class="col-2 small"><b>Nr</b></div>
         <div class="col-3 small"></div>
       </div>
-      <edit-my-client-locations-list-item *ngFor="let clientLocation of client.clientLocations" [clientLocation]="clientLocation"></edit-my-client-locations-list-item>
+      <edit-my-client-locations-list-item *ngFor="let clientLocation of client.clientLocations" (refreshClientLocationsEvent)="onRefreshClient()" [clientLocation]="clientLocation" [client]="client"></edit-my-client-locations-list-item>
     </div>
   </div>
 
