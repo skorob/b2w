@@ -9,4 +9,5 @@ export class ClientLocation {
   city:string;
   country:string;
   fullAddress:string;
+  comments:string;
 }

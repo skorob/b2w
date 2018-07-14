@@ -18,6 +18,7 @@ export class EditMyClientListItemComponent implements OnInit {
   @Output()
   clientLocationAddEvent = new EventEmitter<Client>();
 
+
   constructor(private businessProfileService:BusinessProfileService) { }
 
   ngOnInit() {
@@ -36,5 +37,6 @@ export class EditMyClientListItemComponent implements OnInit {
   onClientLocationAddClick() {
     this.clientLocationAddEvent.emit(this.client);
   }
+
 
 }

@@ -12,6 +12,7 @@ import { EditMyClientWithAddressComponent } from './component/edit-my-client-wit
 import {AgmCoreModule} from "@agm/core";
 import {GEOService} from "../../../../shared/service/geo.service";
 import { EditMyClientListItemComponent } from './component/edit-my-client-list-item/edit-my-client-list-item.component';
+import { EditMyClientLocationsListItemComponent } from './component/edit-my-client-locations-list-item/edit-my-client-locations-list-item.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EditMyClientListItemComponent } from './component/edit-my-client-list-i
       EditBusinessProfileComponent,
       EditMyClientListComponent,
       EditMyClientWithAddressComponent,
-      EditMyClientListItemComponent
+      EditMyClientListItemComponent,
+      EditMyClientLocationsListItemComponent
   ],
   imports: [
     FormsModule,
