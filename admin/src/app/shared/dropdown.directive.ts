@@ -13,6 +13,7 @@ export class DropdownDirective {
 
   @HostListener('click')
   toggleOpen() {
+    console.log('gggggggggggggggggggggggggggggggggggg');
     this.isOpen = !this.isOpen;
     let submenu = this.elRef.nativeElement.querySelector('.dropdown-menu')
     if(this.isOpen) {

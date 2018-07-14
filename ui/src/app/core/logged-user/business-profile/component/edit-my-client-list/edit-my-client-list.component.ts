@@ -45,9 +45,7 @@ export class EditMyClientListComponent implements OnInit {
       $event,
       null,
       () : void => {
-          this.businessProfileService.findMyClientById(this.currentClient.id).then((client:Client)=> {
-          this.currentClient = client;
-        })
+          this.clientsRefresh();
       })
 
   }

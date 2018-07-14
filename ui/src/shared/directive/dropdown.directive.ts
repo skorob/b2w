@@ -3,7 +3,7 @@ import {Directive, HostListener, HostBinding, ElementRef} from "@angular/core";
 @Directive({
   selector: '[appDropdown]',
   host: {
-    '(document:click)': 'handleClick($event)',
+    '(document:click)': 'handleClick($event)'
   }
 })
 export class DropdownDirective {

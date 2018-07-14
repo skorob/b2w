@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+.pac-container {
+  z-index: 1054;
+}
+
+.btn-sm {
+  line-height: 1.0;
+}
+
+.col-form-label {
+  line-height:1.0rem;
+}
+
+
+.form-control {
+  line-height:1.0rem;
+}
