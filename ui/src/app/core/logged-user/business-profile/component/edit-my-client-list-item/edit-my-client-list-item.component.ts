@@ -16,12 +16,9 @@ export class EditMyClientListItemComponent implements OnInit {
   @Output()
   clientsRefreshEvent = new EventEmitter<void>();
 
-
-
   constructor(private businessProfileService:BusinessProfileService, private uiInteractionService : UiInteractionService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClientDeleteClick() {
     if(confirm("Are you sure to delete client : '"+this.client.name+"' ")) {
@@ -34,10 +31,12 @@ export class EditMyClientListItemComponent implements OnInit {
   }
 
   onClientLocationAddClick() {
-
-    this.uiInteractionService.showEditClientLocationDialog(this.client, null, () : void=> {
-      this.clientsRefreshEvent.emit();
-    })
+    this.uiInteractionService.showEditClientLocationDialog(
+      this.client,
+      null,
+      () : void=> {
+          this.onRefreshClient();
+        })
   }
 
   onRefreshClient() {
@@ -46,7 +45,10 @@ export class EditMyClientListItemComponent implements OnInit {
         this.client = client;
       })
     )
+  }
 
+  isClientWithClientLocations() {
+    return this.client.clientLocations && this.client.clientLocations.length>0;
   }
 
 

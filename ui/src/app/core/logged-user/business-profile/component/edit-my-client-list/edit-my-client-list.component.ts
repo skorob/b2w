@@ -15,16 +15,13 @@ import {UiInteractionService} from "../../service/ui-interaction.service";
 })
 export class EditMyClientListComponent implements OnInit {
 
-
   clients:Client[];
   searchName:string;
-
   currentClient:Client;
-
   currentClientLocation: ClientLocation;
 
-
-  constructor(private businessProfileService:BusinessProfileService, private uiInteractionService:UiInteractionService) {}
+  constructor(private businessProfileService:BusinessProfileService,
+              private uiInteractionService:UiInteractionService) {}
 
   ngOnInit() {
       this.searchName="*";
@@ -39,10 +36,10 @@ export class EditMyClientListComponent implements OnInit {
   }
 
 
-  clientLocationAddDialogShow($event) {
+  clientLocationAddDialogShow($client) {
 
     this.uiInteractionService.showEditClientLocationDialog(
-      $event,
+      $client,
       null,
       () : void => {
           this.clientsRefresh();

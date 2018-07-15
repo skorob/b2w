@@ -3,12 +3,15 @@
     <h5 class="mb-0">
       <div class="row w-100">
         <div class="col-3 small input-group-sm">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" attr.data-target="#collapse{{client.id}}"
-              attr.aria-expanded="{{expanded}}" attr.aria-controls="collapse{{client.id}}">{{client.name}}
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                  attr.data-target="#collapse{{client.id}}"
+                  attr.aria-expanded="true" attr.aria-controls="collapse{{client.id}}">{{client.name}}
           </button>
         </div>
 
-        <div class="col-1 small input-group-sm"><small> {{client.clientLocations.length}}</small></div>
+        <div class="col-1 small input-group-sm">
+          <small> {{client.clientLocations.length}}</small>
+        </div>
         <div class="col-4 small input-group-sm mt-1">
           <button type="button" class="btn btn-danger btn-sm mr-1" (click)="onClientDeleteClick()">Remove client
           </button>
@@ -17,17 +20,24 @@
       </div>
     </h5>
   </div>
-  <div id="collapse{{client.id}}" class="collapse" attr.aria-labelledby="heading{{client.id}}" data-parent="#accordion">
-    <div class="card-body">
-      <div class="row w-100">
-        <div class="col-2 small"><b>City</b></div>
-        <div class="col-3 small"><b>Street</b></div>
-        <div class="col-2 small"><b>Nr</b></div>
-        <div class="col-3 small"></div>
+
+  <ng-template [ngIf]="isClientWithClientLocations()">
+    <div id="collapse{{client.id}}" class="collapse" attr.aria-labelledby="heading{{client.id}}"
+         data-parent="#accordion">
+      <div class="card-body">
+        <div class="row w-100">
+          <div class="col-2 small"><b>City</b></div>
+          <div class="col-3 small"><b>Street</b></div>
+          <div class="col-2 small"><b>Nr</b></div>
+          <div class="col-3 small"></div>
+        </div>
+        <edit-my-client-locations-list-item *ngFor="let clientLocation of client.clientLocations"
+                                            (refreshClientLocationsEvent)="onRefreshClient()"
+                                            [clientLocation]="clientLocation"
+                                            [client]="client"></edit-my-client-locations-list-item>
       </div>
-      <edit-my-client-locations-list-item *ngFor="let clientLocation of client.clientLocations" (refreshClientLocationsEvent)="onRefreshClient()" [clientLocation]="clientLocation" [client]="client"></edit-my-client-locations-list-item>
     </div>
-  </div>
+  </ng-template>
 
 </div>
 

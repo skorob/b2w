@@ -16,14 +16,13 @@
   <div class="accordion" id="accordion">
     <edit-my-client-list-item *ngFor="let client of clients"
                               [client]="client"
-                              (clientsRefreshEvent)="clientsRefresh()"
-                              (clientLocationAddEvent)="clientLocationAddDialogShow($event)">
+                              (clientsRefreshEvent)="clientsRefresh()">
     </edit-my-client-list-item>
   </div>
 
 
-  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="clientDialog" (click)="clientLocationAddDialogShow()">Create new client</button>
+  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="clientDialog" (click)="clientLocationAddDialogShow(null)">Create new client</button>
 
 </div>
 
-<edit-my-client-with-adress (clientCreatedEvent)="onCreatedItem($event)" [client]="currentClient" [clientLocation]="currentClientLocation"></edit-my-client-with-adress>
+<edit-my-client-with-adress  [client]="currentClient" [clientLocation]="currentClientLocation"></edit-my-client-with-adress>
