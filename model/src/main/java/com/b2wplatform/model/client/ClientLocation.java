@@ -18,6 +18,10 @@ public class ClientLocation extends FixedAddress {
     private Client client;
 
 
+    @Column(name = "сomments")
+    private String comments;
+
+
     public Client getClient() {
         return client;
     }

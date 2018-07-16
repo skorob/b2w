@@ -10,4 +10,5 @@ export class ClientLocation {
   country:string;
   fullAddress:string;
   comments:string;
+  flatNr:string;
 }

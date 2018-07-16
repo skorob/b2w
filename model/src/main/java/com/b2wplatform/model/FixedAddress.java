@@ -21,6 +21,9 @@ public class FixedAddress extends PlatformEntity {
     private Double latitude;
     @Column(name = "fullAddress")
     private String fullAddress;
+    @Column(name = "flatNr")
+    private String flatNr;
+
 
     public String getCountry() {
         return country;
@@ -78,4 +81,11 @@ public class FixedAddress extends PlatformEntity {
         this.fullAddress = fullAddress;
     }
 
+    public String getFlatNr() {
+        return flatNr;
+    }
+
+    public void setFlatNr(String flatNr) {
+        this.flatNr = flatNr;
+    }
 }
